@@ -1,0 +1,40 @@
+@media (max-width: 1680px) {
+  :root {
+    --maxWidthS: 480px;
+    --maxWidthM: 640px;
+    --maxWidthL: 1000px;
+    --maxWidthXL: 1100px;
+    --spaceOuter: 48px;
+    --fontSizeH0: 6.25rem;
+    --fontSizeH1: 4.375rem;
+    --fontSizeH2: 3.125rem;
+    --fontSizeH3: 2.25rem;
+    --fontSizeH4: 1.625rem;
+    --fontSizeH5: 1.375rem;
+  }
+}
+
+@media (min-width: 625px) {
+  .logo-bg {
+    top: -55px;
+    right: -300px;
+    width: 1000px;
+    height: 1070px;
+    max-width: none;
+    max-height: none;
+  }
+
+  .logo-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+}

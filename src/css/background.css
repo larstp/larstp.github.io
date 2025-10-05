@@ -1,0 +1,37 @@
+.logo-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.logo-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80vw;
+  height: 80vw;
+  max-width: 400px;
+  max-height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  will-change: transform;
+}
+
+.logo-bg-bottom {
+  background-image: url("../../public/assets/icons/echo-logo-bottom.svg");
+  z-index: 1;
+}
+
+.logo-bg-top {
+  background-image: url("../../public/assets/icons/echo-logo-top.svg");
+  z-index: 2;
+}
