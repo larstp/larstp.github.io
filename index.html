@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#111" />
     <meta name="color-scheme" content="dark light" />
     <title>larstp - Portfolio</title>
-    <link rel="stylesheet" href="src/css/index.css" />
+    <link rel="stylesheet" href="src/css/utils/index.css" />
     <link rel="stylesheet" href="https://use.typekit.net/ihh6hhm.css" />
     <link
       rel="icon"
@@ -53,23 +53,11 @@
       <div class="logo-bg logo-bg-bottom"></div>
       <div class="logo-bg logo-bg-top"></div>
     </div>
-    <main>
-      <section class="main-text">
-        <h1>Lars Torp Pettersen</h1>
-        <h2>Front End Developer</h2>
-        <div class="fancy-3d">
-          <div class="fancy-3d-content">
-            <img
-              src="public/assets/images/2025-10-05 18.22.51 larstp.github.io 659cb92e3cb6.png"
-              alt="E-Co Logo"
-              class="fancy-3d-img"
-            />
-            <span class="fancy-3d-text">E-Co</span>
-          </div>
-        </div>
-      </section>
-    </main>
+    <main id="main-content"></main>
     <footer></footer>
-    <script src="src/js/utils/background.js"></script>
+    <script type="module" src="./src/js/utils/header.js"></script>
+    <script src="./src/js/utils/background.js"></script>
+    <script src="./src/js/utils/mainTitle.js"></script>
+    <script src="./src/js/home.js"></script>
   </body>
 </html>

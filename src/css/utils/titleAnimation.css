@@ -1,0 +1,79 @@
+/* titleAnimation.css: Styles for animated main heading */
+
+.main-title-anim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 100vw;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 32px 8px;
+  box-sizing: border-box;
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.main-title-anim.flow {
+  position: static;
+  top: unset;
+  left: unset;
+  z-index: 1;
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+  padding: 32px 8px;
+  transform: none !important;
+  transition: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.main-title-anim.start {
+  transform: translate(-50%, -50%) scale(1.05);
+  opacity: 1;
+}
+
+.main-title-anim.end {
+  /* transform is now set dynamically via JS for responsive animation */
+  opacity: 1;
+}
+
+.main-title-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.main-title-inner h1,
+.main-title-inner h2 {
+  text-align: left;
+  width: 100%;
+}
+
+@media (min-width: 625px) {
+  .main-title-anim {
+    font-size: 2.5rem !important;
+    padding: 50px;
+    max-width: 700px;
+    align-items: flex-start;
+  }
+  .main-title-inner {
+    max-width: 700px;
+  }
+  .main-title-inner h1 {
+    font-size: 30px !important;
+    letter-spacing: 10px !important;
+    padding-left: 10px;
+  }
+  .main-title-inner h2 {
+    font-size: 100px !important;
+    letter-spacing: -0.03em !important;
+  }
+}
