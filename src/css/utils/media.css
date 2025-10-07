@@ -24,6 +24,7 @@
     height: 1070px;
     max-width: none;
     max-height: none;
+    background-size: contain;
   }
 
   .logo-bg-container {
