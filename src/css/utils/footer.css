@@ -1,4 +1,3 @@
-/* Footer styles */
 .site-footer {
   position: relative;
   width: 100%;
@@ -7,7 +6,7 @@
     rgba(32, 32, 32, 0) 0%,
     var(--background, #202020) 85%
   );
-  color: var(--text-color, #fff);
+  color: #868686;
   padding: 40px 20px;
   margin-top: 60px;
 }

@@ -1,4 +1,5 @@
 import { getMainTitleHTML } from "./utils/mainTitle.js";
+import { createContactSection } from "./utils/contactForm.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const main = document.getElementById("main-content");
@@ -27,9 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const projects = createProjectsSection();
   main.appendChild(projects);
 
+  const contact = createContactSection();
+  main.appendChild(contact);
+
   setTimeout(() => {
     projects.classList.add("projects-fade-in");
-  }, 2500); // ---------------------------------------------After scene + portfolio animations
+  }, 2500);
+
+  setTimeout(() => {
+    contact.classList.add("contact-fade-in");
+  }, 3000);
 
   function createScenePortfolioSection() {
     const portfolio = document.createElement("section");

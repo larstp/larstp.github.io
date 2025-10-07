@@ -46,7 +46,7 @@
 .main-text h2 {
   opacity: 0;
   animation: subtitleFadeIn 500ms ease forwards;
-  animation-delay: 650ms; /* start right after h1 */
+  animation-delay: 650ms;
 }
 
 @keyframes titleFadeUp {

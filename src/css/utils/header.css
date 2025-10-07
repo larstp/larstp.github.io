@@ -25,7 +25,7 @@
 .mobile-header {
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 56px;
   background: linear-gradient(
     to bottom,
@@ -60,7 +60,7 @@
 .header-dropdown {
   position: fixed;
   inset: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: rgba(32, 32, 32, 0.65);
   backdrop-filter: blur(18px) saturate(1.2);
@@ -175,7 +175,7 @@
   display: none;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 64px;
   background: linear-gradient(
     to bottom,

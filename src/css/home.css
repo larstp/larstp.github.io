@@ -103,12 +103,14 @@
 }
 .portfolio-btn {
   padding: 0.75em 2em;
+  transition: all 0.3s ease;
 }
 .portfolio-btn.github-btn {
   background: #333;
 }
 .portfolio-btn:hover {
   background: var(--accent, #0055ff);
+  transform: translateY(-2px);
 }
 
 .portfolio-right {

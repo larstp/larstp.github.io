@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function smoothScrollTo(targetY, duration = 800) {
     const start = window.scrollY || window.pageYOffset;
     const distance = targetY - start;
+
+    if (distance === 0) {
+      return;
+    }
+
     const easeInOutCubic = (
       t // Thank you mr CoPilot
     ) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -12,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const ease = easeInOutCubic(progress);
-      window.scrollTo(0, start + distance * ease);
+      const currentPosition = start + distance * ease;
+      window.scrollTo(0, currentPosition);
       if (progress < 1) {
         requestAnimationFrame(animateScroll);
       }
@@ -58,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
   desktopNavList.className = "desktop-nav-list";
   [
     { text: "Projects", href: "#projects" },
-    { text: "Contact", href: "./src/pages/contact.html" },
+    { text: "Contact", href: "#contact" },
     { text: "GitHub", href: "https://github.com/larstp", target: "_blank" },
   ].forEach((item) => {
     const li = document.createElement("li");
@@ -73,6 +79,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
           const targetY = projectsSection.offsetTop - 100;
+          smoothScrollTo(targetY);
+        }
+      });
+    }
+
+    if (item.text === "Contact") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const contactSection = document.querySelector(".contact-section");
+        if (contactSection) {
+          const targetY = contactSection.offsetTop - 100;
           smoothScrollTo(targetY);
         }
       });
@@ -141,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       text: "Contact",
-      href: "./src/pages/contact.html",
+      href: "#contact",
       icon: "public/assets/icons/material-symbols_mail-rounded.svg",
       iconAlt: "Contact icon",
     },
@@ -165,6 +182,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
           const targetY = projectsSection.offsetTop - 100;
+          smoothScrollTo(targetY);
+          menuOpen = false;
+          dropdown.classList.remove("open");
+          menuBtn.classList.remove("open");
+          document.body.classList.remove("header-menu-open");
+        }
+      });
+    }
+
+    if (item.text === "Contact") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const contactSection = document.querySelector(".contact-section");
+        if (contactSection) {
+          const targetY = contactSection.offsetTop - 100;
           smoothScrollTo(targetY);
           menuOpen = false;
           dropdown.classList.remove("open");
