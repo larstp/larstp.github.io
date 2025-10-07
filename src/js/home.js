@@ -4,11 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const main = document.getElementById("main-content");
   if (!main) return;
 
-  // Create unified scene container
   const heroScene = document.createElement("div");
   heroScene.className = "hero-scene";
 
-  // Create hero section within the scene
   const hero = document.createElement("section");
   hero.className = "title-hero";
   const titleContainer = document.createElement("div");
@@ -16,28 +14,22 @@ document.addEventListener("DOMContentLoaded", function () {
   titleContainer.innerHTML = getMainTitleHTML();
   hero.appendChild(titleContainer);
 
-  // Create portfolio section within the scene
   const portfolio = createScenePortfolioSection();
 
-  // Create portfolio image for desktop (separate element)
   const portfolioImage = createPortfolioImage();
 
-  // Assemble the scene
   heroScene.appendChild(hero);
   heroScene.appendChild(portfolio);
   heroScene.appendChild(portfolioImage);
 
-  // Add scene to main (pre-loaded, no layout jumps)
   main.appendChild(heroScene);
 
-  // Create projects section (still separate, below the scene)
   const projects = createProjectsSection();
   main.appendChild(projects);
 
-  // Fade in projects after scene animation completes
   setTimeout(() => {
     projects.classList.add("projects-fade-in");
-  }, 2500); // After scene + portfolio animations
+  }, 2500); // ---------------------------------------------After scene + portfolio animations
 
   function createScenePortfolioSection() {
     const portfolio = document.createElement("section");
@@ -68,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
     contactBtn.appendChild(contactIcon);
     contactBtn.appendChild(document.createTextNode("Contact me"));
 
-    // Add click handler for contact button
     contactBtn.addEventListener("click", function () {
       window.location.href = "./src/pages/contact.html";
     });
@@ -82,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
     githubBtn.appendChild(githubIcon);
     githubBtn.appendChild(document.createTextNode("GitHub"));
 
-    // Add click handler for GitHub button
     githubBtn.addEventListener("click", function () {
       window.open("https://github.com/larstp", "_blank");
     });
@@ -95,14 +85,12 @@ document.addEventListener("DOMContentLoaded", function () {
     left.appendChild(p2);
     left.appendChild(btnContainer);
 
-    // Only include text content - image will be handled separately for better responsive control
     portfolio.appendChild(left);
 
     return portfolio;
   }
 
   function createPortfolioImage() {
-    // Separate image element for desktop grid layout
     const imageContainer = document.createElement("div");
     imageContainer.className = "portfolio-image";
     const img = document.createElement("div");
@@ -113,11 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function createProjectsSection() {
-    // Main container
     const section = document.createElement("section");
     section.className = "projects-section projects-fade";
 
-    // Text container
     const textContainer = document.createElement("div");
     textContainer.className = "projects-text";
     const heading = document.createElement("h3");
@@ -128,11 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
     textContainer.appendChild(heading);
     textContainer.appendChild(desc);
 
-    // Cards container
     const cardsContainer = document.createElement("div");
     cardsContainer.className = "projects-cards";
 
-    // Example projects (replace with your real links/titles/images)
     const projects = [
       {
         title: "Astro Gallery",

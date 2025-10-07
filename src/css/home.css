@@ -65,7 +65,6 @@
   justify-content: center;
 }
 
-/* Legacy portfolio section styles still needed for projects */
 .portfolio-section {
   display: flex;
   flex-direction: row;
@@ -73,11 +72,10 @@
   gap: 2.5rem;
   width: 100%;
   max-width: 700px;
-  /* Pull up to overlap the hero slightly */
   margin: -50vw auto 0 auto;
   box-sizing: border-box;
   position: relative;
-  z-index: 3; /* above hero container, below .main-text (z:2 on child, but parent's stacking is lower) */
+  z-index: 3;
 }
 
 .portfolio-left {

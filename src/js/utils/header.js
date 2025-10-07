@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Smooth scroll function - reusable for any target
   function smoothScrollTo(targetY, duration = 800) {
     const start = window.scrollY || window.pageYOffset;
     const distance = targetY - start;
@@ -34,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   logoLink.appendChild(logoImg);
   logoLink.addEventListener("click", function (e) {
     e.preventDefault();
-    smoothScrollTo(0); // Scroll to top
+    smoothScrollTo(0);
   });
 
   const desktopHeader = document.createElement("header");
@@ -57,13 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
     a.href = item.href;
     if (item.target) a.target = item.target;
 
-    // Add smooth scroll for Projects link
     if (item.text === "Projects") {
       a.addEventListener("click", function (e) {
         e.preventDefault();
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
-          const targetY = projectsSection.offsetTop - 100; // Small offset from top
+          const targetY = projectsSection.offsetTop - 100;
           smoothScrollTo(targetY);
         }
       });
@@ -122,15 +120,13 @@ document.addEventListener("DOMContentLoaded", function () {
     a.href = item.href;
     if (item.target) a.target = item.target;
 
-    // Add smooth scroll for Projects link in mobile menu
     if (item.text === "Projects") {
       a.addEventListener("click", function (e) {
         e.preventDefault();
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
-          const targetY = projectsSection.offsetTop - 100; // Small offset from top
+          const targetY = projectsSection.offsetTop - 100;
           smoothScrollTo(targetY);
-          // Close mobile menu after clicking
           menuOpen = false;
           dropdown.classList.remove("open");
           menuBtn.classList.remove("open");
