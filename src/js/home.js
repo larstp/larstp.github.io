@@ -1,10 +1,36 @@
+import { getMainTitleHTML } from "./utils/mainTitle.js";
+
 document.addEventListener("DOMContentLoaded", function () {
   const main = document.getElementById("main-content");
   if (!main) return;
-  // Main heading animation is now handled in mainTitle.js
-  // This file only handles portfolio and projects sections
 
-  function insertPortfolioSection() {
+  // Insert the main title section before portfolio
+  const hero = document.createElement("section");
+  hero.className = "title-hero";
+  const titleContainer = document.createElement("div");
+  titleContainer.className = "main-text";
+  titleContainer.innerHTML = getMainTitleHTML();
+  hero.appendChild(titleContainer);
+  main.appendChild(hero);
+
+  // Pre-insert all sections to avoid layout jumps, then fade them in
+  const portfolio = createPortfolioSection();
+  const projects = createProjectsSection();
+
+  // Add to DOM immediately but hidden
+  main.appendChild(portfolio);
+  main.appendChild(projects);
+
+  // Fade in portfolio after delay
+  setTimeout(() => {
+    portfolio.classList.add("portfolio-fade-in");
+    // Fade in projects after portfolio
+    setTimeout(() => {
+      projects.classList.add("projects-fade-in");
+    }, 700);
+  }, 1400);
+
+  function createPortfolioSection() {
     const portfolio = document.createElement("section");
     portfolio.className = "portfolio-section portfolio-fade";
 
@@ -60,22 +86,13 @@ document.addEventListener("DOMContentLoaded", function () {
     portfolio.appendChild(left);
     portfolio.appendChild(right);
 
-    main.appendChild(portfolio);
-
-    // Trigger fade-in after a short delay for transition
-    setTimeout(() => {
-      portfolio.classList.add("portfolio-fade-in");
-      // Insert next section after portfolio fade-in
-      setTimeout(() => {
-        insertProjectsSection();
-      }, 700);
-    }, 100); // Fade in after 100ms
+    return portfolio;
   }
 
-  function insertProjectsSection() {
+  function createProjectsSection() {
     // Main container
     const section = document.createElement("section");
-    section.className = "projects-section";
+    section.className = "projects-section projects-fade";
 
     // Text container
     const textContainer = document.createElement("div");
@@ -136,10 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     section.appendChild(textContainer);
     section.appendChild(cardsContainer);
-    main.appendChild(section);
+    return section;
   }
-  // Wait for the main heading animation to finish before inserting portfolio
-  document.addEventListener("mainTitleAnimationDone", insertPortfolioSection, {
-    once: true,
-  });
 });

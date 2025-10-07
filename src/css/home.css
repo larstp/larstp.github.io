@@ -12,6 +12,14 @@
   opacity: 1;
 }
 
+.projects-fade {
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.projects-fade-in {
+  opacity: 1;
+}
+
 .main-text-inner {
   display: flex;
   flex-direction: column;
@@ -36,11 +44,11 @@
   gap: 2.5rem;
   width: 100%;
   max-width: 700px;
-  margin: 100px auto 0 auto;
-  padding: 32px 8px 0 8px;
+  /* Pull up to overlap the hero slightly */
+  margin: -50vw auto 0 auto;
   box-sizing: border-box;
   position: relative;
-  z-index: 1;
+  z-index: 3; /* above hero container, below .main-text (z:2 on child, but parent's stacking is lower) */
 }
 
 .portfolio-left {
