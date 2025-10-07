@@ -39,6 +39,8 @@
   animation: marginShrink 400ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
   animation-delay: 1200ms;
   animation-fill-mode: both; /* Apply 'from' state immediately, keep 'to' state after */
+  order: 1; /* On mobile: show first */
+  /* Allow text wrapping on mobile */
 }
 
 /* No container movement; keep title centered and animate children only */
@@ -85,6 +87,7 @@
   margin-top: 20px; /* Small gap after text settles */
   animation: portfolioFadeIn 800ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
   animation-delay: 1600ms; /* after margin animation completes */
+  order: 3; /* On mobile: show after image */
 }
 
 /* Portfolio image - show on mobile below text, separate grid item on desktop */
@@ -95,6 +98,7 @@
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  order: 2; /* On mobile: show between main-text and scene-portfolio */
 }
 
 /* Mobile margin shrinking - text moves from center to final position */
@@ -166,6 +170,7 @@
     /* Let animation handle margins on desktop too */
     margin: 0;
     flex: none;
+    white-space: nowrap; /* Prevent text wrapping */
   }
 
   .scene-portfolio {
@@ -174,18 +179,20 @@
     padding: 0;
     max-width: none;
     opacity: 0;
+    order: unset; /* Reset order for desktop layout */
   }
 
   .portfolio-image {
     position: absolute; /* Pop out to the side */
     top: 35vh; /* Adjust vertical position */
     right: 11vh; /* Position within the padding area */
-    width: 280px; /* Slightly smaller to fit in padding */
+    width: 350px; /* Bigger image for desktop */
     opacity: 0;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     z-index: 1; /* Make sure it's visible */
+    order: unset; /* Reset order for desktop absolute positioning */
   }
 
   .portfolio-left {

@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Smooth scroll function - reusable for any target
+  function smoothScrollTo(targetY, duration = 800) {
+    const start = window.scrollY || window.pageYOffset;
+    const distance = targetY - start;
+    const easeInOutCubic = (
+      t // Thank you mr CoPilot
+    ) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    let startTime = null;
+
+    function animateScroll(currentTime) {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+      window.scrollTo(0, start + distance * ease);
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    }
+    requestAnimationFrame(animateScroll);
+  }
+
   const mobileHeader = document.createElement("header");
   mobileHeader.className = "mobile-header";
 
@@ -12,23 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
   logoLink.appendChild(logoImg);
   logoLink.addEventListener("click", function (e) {
     e.preventDefault();
-    const start = window.scrollY || window.pageYOffset;
-    const duration = 800;
-    const easeInOutCubic = (
-      t // Thank you mr CoPilot
-    ) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-    let startTime = null;
-    function animateScroll(currentTime) {
-      if (!startTime) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-      window.scrollTo(0, start * (1 - ease));
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
-      }
-    }
-    requestAnimationFrame(animateScroll);
+    smoothScrollTo(0); // Scroll to top
   });
 
   const desktopHeader = document.createElement("header");
@@ -50,6 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
     a.textContent = item.text;
     a.href = item.href;
     if (item.target) a.target = item.target;
+
+    // Add smooth scroll for Projects link
+    if (item.text === "Projects") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const projectsSection = document.querySelector(".projects-section");
+        if (projectsSection) {
+          const targetY = projectsSection.offsetTop - 100; // Small offset from top
+          smoothScrollTo(targetY);
+        }
+      });
+    }
+
     li.appendChild(a);
     desktopNavList.appendChild(li);
   });
@@ -102,6 +121,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const a = document.createElement("a");
     a.href = item.href;
     if (item.target) a.target = item.target;
+
+    // Add smooth scroll for Projects link in mobile menu
+    if (item.text === "Projects") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const projectsSection = document.querySelector(".projects-section");
+        if (projectsSection) {
+          const targetY = projectsSection.offsetTop - 100; // Small offset from top
+          smoothScrollTo(targetY);
+          // Close mobile menu after clicking
+          menuOpen = false;
+          dropdown.classList.remove("open");
+          menuBtn.classList.remove("open");
+          document.body.classList.remove("header-menu-open");
+        }
+      });
+    }
 
     const icon = document.createElement("img");
     icon.src = item.icon;

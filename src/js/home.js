@@ -68,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
     contactBtn.appendChild(contactIcon);
     contactBtn.appendChild(document.createTextNode("Contact me"));
 
+    // Add click handler for contact button
+    contactBtn.addEventListener("click", function () {
+      window.location.href = "./src/pages/contact.html";
+    });
+
     const githubBtn = document.createElement("button");
     githubBtn.className = "portfolio-btn github-btn";
     const githubIcon = document.createElement("img");
@@ -76,6 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
     githubIcon.className = "btn-icon";
     githubBtn.appendChild(githubIcon);
     githubBtn.appendChild(document.createTextNode("GitHub"));
+
+    // Add click handler for GitHub button
+    githubBtn.addEventListener("click", function () {
+      window.open("https://github.com/larstp", "_blank");
+    });
 
     btnContainer.appendChild(contactBtn);
     btnContainer.appendChild(githubBtn);
