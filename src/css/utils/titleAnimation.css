@@ -1,28 +1,46 @@
-/* Mobile-first title animation and heading styles */
+/* Mobile-first unified scene animation */
+.hero-scene {
+  position: relative;
+  width: 100%;
+  max-width: 100%; /* Don't exceed parent width */
+  min-height: 100vh;
+  overflow: hidden; /* Hard boundary for animations */
+  z-index: 1;
+  margin: 0 auto;
+  box-sizing: border-box; /* Include padding in width calculation */
+  /* Flexbox layout for final positioning */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
 .title-hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* full viewport height */
-  z-index: 0; /* hero container sits below following sections by default */
+  /* No fixed height needed - let content determine height */
+  z-index: 0;
 }
 
 .main-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  /* Don't set initial margins here - let animation handle both initial and final state */
   margin: 0;
   padding: 32px 8px;
-  z-index: 2; /* keep title above portfolio when overlapping */
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* left align content */
+  align-items: flex-start;
   justify-content: center;
   width: auto;
   box-sizing: border-box;
-  /* Move the whole block slightly up after the text fades */
-  animation: heroNudgeUp 400ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  animation-delay: 1200ms; /* after h1 (600ms) + gap + h2 (500ms) */
+  /* Animation handles both initial state and transition */
+  animation: marginShrink 400ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 1200ms;
+  animation-fill-mode: both; /* Apply 'from' state immediately, keep 'to' state after */
+  order: 1; /* On mobile: show first */
+  /* Allow text wrapping on mobile */
 }
 
 /* No container movement; keep title centered and animate children only */
@@ -62,13 +80,47 @@
   }
 }
 
-/* Nudge the centered container up a bit after the titles appear */
-@keyframes heroNudgeUp {
+/* Portfolio section within the scene */
+.scene-portfolio {
+  opacity: 0;
+  padding: 0 32px;
+  margin-top: 20px; /* Small gap after text settles */
+  animation: portfolioFadeIn 800ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 1600ms; /* after margin animation completes */
+  order: 3; /* On mobile: show after image */
+}
+
+/* Portfolio image - show on mobile below text, separate grid item on desktop */
+.portfolio-image {
+  opacity: 0;
+  animation: portfolioFadeIn 800ms cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  animation-delay: 1600ms;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  order: 2; /* On mobile: show between main-text and scene-portfolio */
+}
+
+/* Mobile margin shrinking - text moves from center to final position */
+@keyframes marginShrink {
   from {
-    transform: translate(-50%, -50%);
+    margin-top: 40vh;
+    margin-left: 20vw;
   }
   to {
-    transform: translate(-50%, calc(-50% - 300px));
+    margin-top: 40px;
+    margin-left: 0;
+  }
+}
+
+@keyframes portfolioFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -88,34 +140,85 @@
   margin: 0;
 }
 
-/* Desktop overrides */
-@media (min-width: 900px) {
-  .main-text {
+/* Desktop overrides - sophisticated layout */
+@media (min-width: 700px) {
+  .hero-scene {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: 50px;
-    align-items: center !important;
-    text-align: center;
-    animation-delay: 1200ms;
+    padding-right: 350px; /* Make room for absolutely positioned image */
+    position: relative; /* For absolute positioning of image */
+    max-width: 100%; /* Stay within main-content */
+    box-sizing: border-box; /* Include padding in width */
   }
 
-  /* Override animation to move left instead of up on desktop */
-  @keyframes heroNudgeUp {
+  .title-hero {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between title and portfolio */
+    width: 100%;
+    max-width: 600px; /* Limit width so image has space to pop out */
+  }
+
+  .main-text {
+    padding: 50px 0;
+    align-items: flex-start;
+    text-align: left;
+    /* Let animation handle margins on desktop too */
+    margin: 0;
+    flex: none;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+  .scene-portfolio {
+    flex: none;
+    margin-top: 0;
+    padding: 0;
+    max-width: none;
+    opacity: 0;
+    order: unset; /* Reset order for desktop layout */
+  }
+
+  .portfolio-image {
+    position: absolute; /* Pop out to the side */
+    top: 35vh; /* Adjust vertical position */
+    right: 11vh; /* Position within the padding area */
+    width: 350px; /* Bigger image for desktop */
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1; /* Make sure it's visible */
+    order: unset; /* Reset order for desktop absolute positioning */
+  }
+
+  .portfolio-left {
+    padding-left: 55px;
+  }
+
+  /* Desktop margin shrinking - move to left-aligned position */
+  @keyframes marginShrink {
     from {
-      transform: translate(-50%, -50%);
+      margin-top: 30vh;
+      margin-left: 20vw;
     }
     to {
-      /* Reduced left movement to keep text on screen */
-      transform: translate(calc(-50% - 20%), -50%);
+      margin-top: 50px;
+      margin-left: 0;
     }
   }
 
   .main-text h1 {
     font-size: 25px;
     letter-spacing: 10px;
-    text-align: center;
+    text-align: left;
   }
   .main-text h2 {
     font-size: 100px;
     letter-spacing: -0.03em;
-    text-align: center;
+    text-align: left;
   }
 }

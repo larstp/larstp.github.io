@@ -4,35 +4,44 @@ document.addEventListener("DOMContentLoaded", function () {
   const main = document.getElementById("main-content");
   if (!main) return;
 
-  // Insert the main title section before portfolio
+  // Create unified scene container
+  const heroScene = document.createElement("div");
+  heroScene.className = "hero-scene";
+
+  // Create hero section within the scene
   const hero = document.createElement("section");
   hero.className = "title-hero";
   const titleContainer = document.createElement("div");
   titleContainer.className = "main-text";
   titleContainer.innerHTML = getMainTitleHTML();
   hero.appendChild(titleContainer);
-  main.appendChild(hero);
 
-  // Pre-insert all sections to avoid layout jumps, then fade them in
-  const portfolio = createPortfolioSection();
+  // Create portfolio section within the scene
+  const portfolio = createScenePortfolioSection();
+
+  // Create portfolio image for desktop (separate element)
+  const portfolioImage = createPortfolioImage();
+
+  // Assemble the scene
+  heroScene.appendChild(hero);
+  heroScene.appendChild(portfolio);
+  heroScene.appendChild(portfolioImage);
+
+  // Add scene to main (pre-loaded, no layout jumps)
+  main.appendChild(heroScene);
+
+  // Create projects section (still separate, below the scene)
   const projects = createProjectsSection();
-
-  // Add to DOM immediately but hidden
-  main.appendChild(portfolio);
   main.appendChild(projects);
 
-  // Fade in portfolio after delay
+  // Fade in projects after scene animation completes
   setTimeout(() => {
-    portfolio.classList.add("portfolio-fade-in");
-    // Fade in projects after portfolio
-    setTimeout(() => {
-      projects.classList.add("projects-fade-in");
-    }, 700);
-  }, 1400);
+    projects.classList.add("projects-fade-in");
+  }, 2500); // After scene + portfolio animations
 
-  function createPortfolioSection() {
+  function createScenePortfolioSection() {
     const portfolio = document.createElement("section");
-    portfolio.className = "portfolio-section portfolio-fade";
+    portfolio.className = "scene-portfolio";
 
     const left = document.createElement("div");
     left.className = "portfolio-left";
@@ -59,6 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
     contactBtn.appendChild(contactIcon);
     contactBtn.appendChild(document.createTextNode("Contact me"));
 
+    // Add click handler for contact button
+    contactBtn.addEventListener("click", function () {
+      window.location.href = "./src/pages/contact.html";
+    });
+
     const githubBtn = document.createElement("button");
     githubBtn.className = "portfolio-btn github-btn";
     const githubIcon = document.createElement("img");
@@ -68,6 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
     githubBtn.appendChild(githubIcon);
     githubBtn.appendChild(document.createTextNode("GitHub"));
 
+    // Add click handler for GitHub button
+    githubBtn.addEventListener("click", function () {
+      window.open("https://github.com/larstp", "_blank");
+    });
+
     btnContainer.appendChild(contactBtn);
     btnContainer.appendChild(githubBtn);
 
@@ -76,17 +95,21 @@ document.addEventListener("DOMContentLoaded", function () {
     left.appendChild(p2);
     left.appendChild(btnContainer);
 
-    const right = document.createElement("div");
-    right.className = "portfolio-right";
+    // Only include text content - image will be handled separately for better responsive control
+    portfolio.appendChild(left);
+
+    return portfolio;
+  }
+
+  function createPortfolioImage() {
+    // Separate image element for desktop grid layout
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "portfolio-image";
     const img = document.createElement("div");
     img.className = "portfolio-img-placeholder";
     img.textContent = "[Your Photo Here]";
-    right.appendChild(img);
-
-    portfolio.appendChild(left);
-    portfolio.appendChild(right);
-
-    return portfolio;
+    imageContainer.appendChild(img);
+    return imageContainer;
   }
 
   function createProjectsSection() {
