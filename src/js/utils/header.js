@@ -39,7 +39,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const desktopHeader = document.createElement("header");
   desktopHeader.className = "desktop-header";
 
-  const desktopLogoLink = logoLink.cloneNode(true);
+  const desktopLogoLink = document.createElement("a");
+  desktopLogoLink.href = "/";
+  desktopLogoLink.className = "header-logo-link";
+  const desktopLogoImg = document.createElement("img");
+  desktopLogoImg.src = "public/assets/icons/echo-logo-3.svg";
+  desktopLogoImg.alt = "Lars Torp Pettersen Logo";
+  desktopLogoImg.className = "header-logo";
+  desktopLogoLink.appendChild(desktopLogoImg);
+  desktopLogoLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    smoothScrollTo(0);
+  });
 
   const desktopNav = document.createElement("nav");
   desktopNav.className = "desktop-nav";
@@ -80,12 +91,40 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.createElement("button");
   menuBtn.className = "header-menu-btn";
   menuBtn.setAttribute("aria-label", "Menu");
-  menuBtn.innerHTML = `
-    <svg class="menu-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-      <line class="menu-line top" x1="7" y1="11" x2="25" y2="11" />
-      <line class="menu-line bottom" x1="7" y1="21" x2="25" y2="21" />
-    </svg>
-  `;
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("class", "menu-svg");
+  svg.setAttribute("width", "32");
+  svg.setAttribute("height", "32");
+  svg.setAttribute("viewBox", "0 0 32 32");
+  svg.setAttribute("fill", "none");
+  svg.setAttribute("stroke", "currentColor");
+  svg.setAttribute("stroke-width", "3");
+  svg.setAttribute("stroke-linecap", "round");
+
+  const topLine = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "line"
+  );
+  topLine.setAttribute("class", "menu-line top");
+  topLine.setAttribute("x1", "7");
+  topLine.setAttribute("y1", "11");
+  topLine.setAttribute("x2", "25");
+  topLine.setAttribute("y2", "11");
+
+  const bottomLine = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "line"
+  );
+  bottomLine.setAttribute("class", "menu-line bottom");
+  bottomLine.setAttribute("x1", "7");
+  bottomLine.setAttribute("y1", "21");
+  bottomLine.setAttribute("x2", "25");
+  bottomLine.setAttribute("y2", "21");
+
+  svg.appendChild(topLine);
+  svg.appendChild(bottomLine);
+  menuBtn.appendChild(svg);
 
   const dropdown = document.createElement("nav");
   dropdown.className = "header-dropdown";
