@@ -44,7 +44,7 @@
 
 A modern, responsive portfolio website showcasing my front-end development projects and skills so far. Built with vanilla HTML, CSS, and JavaScript, the site features a clean design system, smooth animations, and an advanced project management system with JSON-based data structure.
 
-This portfolio demonstrates my progression through the NOROFF Front End Development course and beyond, featuring enhanced project cards, DRY styling principles, and a comprehensive CLI-based project management workflow.
+This portfolio demonstrates my progression through the first year NOROFF Front End Development course (and beyond), featuring enhanced project cards, DRY styling principles, and a comprehensive CLI-based project management workflow that hopefully works.
 
 ### Project Links:
 
@@ -142,9 +142,9 @@ npm run validate-data
 - **Responsive Design** - Mobile-first approach with desktop enhancements
 - **Smooth Scrolling** - Custom easing functions for natural navigation
 - **Smart Navigation** - Scroll-based active section highlighting
-- **Interactive Cards** - Hover effects and clipped borders
+- **Interactive Cards** - Hover effects and clipped borders because sci-fi is cool
 - **Interactive Skills Section** - Technology showcase with grayscale-to-color hover effects
-- **Mobile-Optimized Skills** - Full-color display on touch devices (viewport < 1000px)
+- **Mobile-Optimized Skills** - Full-color display on touch devices
 - **Performance Optimized** - Lazy loading and efficient animations
 
 ### Project Management:
@@ -230,7 +230,7 @@ Example GitHub Actions workflows provided for:
 ## 9. Browser Support
 
 - **Modern Browsers** - Chrome, Firefox, Safari, Edge (latest versions)
-- **Progressive Enhancement** - Graceful degradation for older browsers
+- **Progressive Enhancement** - Graceful degradation for older browsers. I suggest just switching to Vivaldi<3
 - **CSS Features** - clip-path, CSS Grid, Custom Properties
 - **JavaScript** - ES6+ with module support
 
@@ -239,14 +239,14 @@ Example GitHub Actions workflows provided for:
 ### Assets & Components:
 
 - **Mouse Scroll Animation** - [Deepak K Vijayan](https://codepen.io/deepakkv/pen/WwmjKQ) (MIT License)
-- **Icons** - Custom SVG icons and open-source collections
+- **Icons** - Custom SVG icons and [Iconify](https://iconify.design/) icon collections
 - **Images** - Personal project screenshots and professional photography
 
 ### Development Tools:
 
 - **GitHub Copilot** - AI coding assistance and suggestions
 - **VS Code** - Primary development environment
-- **Node.js** - CLI tooling and automation
+- **Node.js** - CLI tooling and automation. (Develop only)
 
 See full attribution details in [documentation/documentstion.md](documentation/documentstion.md)
 
@@ -259,6 +259,8 @@ See full attribution details in [documentation/documentstion.md](documentation/d
 - **Chandra Sharma** - [ichandrasharma.vercel.app](https://ichandrasharma.vercel.app) - Modern typography, color schemes
 - **Heuer** - [heuer.ovh](https://heuer.ovh) - Minimalist aesthetic, elegant animations
 - **Hamish Williams** - [hamishw.com](https://hamishw.com/contact) - Interactive elements, creative layouts
+- **Radiat** - [radiat.netlify.app](https://radiat.netlify.app) - Portfolio design and layout inspiration
+- **Ragav S** - [ragavs-profile.netlify.app](https://ragavs-profile.netlify.app) - Profile presentation and styling
 
 ### Technical Inspiration:
 
@@ -275,4 +277,4 @@ See full attribution details in [documentation/documentstion.md](documentation/d
 
 ---
 
-_This portfolio represents my journey in front-end development, showcasing both technical skills and design sensibility. Built with modern web standards and a focus on user experience._
+_This portfolio represents my journey in front-end development, showcasing both technical skills and design sensibility. Built with modern web standards and a focus on user experience. But I am in the beginning of my journey and I will continue to update as I get better._
