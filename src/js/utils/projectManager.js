@@ -1,4 +1,3 @@
-// Project Manager - Easy project management system
 import { createProjectCard, loadTechnologies } from "./projectCards.js";
 
 /**
@@ -24,7 +23,6 @@ export async function loadProjectsData() {
  */
 export function filterProjects(projects, filters = {}) {
   return projects.filter((project) => {
-    // Filter by featured status
     if (
       filters.featured !== undefined &&
       project.featured !== filters.featured
@@ -37,7 +35,6 @@ export function filterProjects(projects, filters = {}) {
       return false;
     }
 
-    // Filter by technology
     if (
       filters.technology &&
       !project.technologies.includes(filters.technology)
@@ -92,13 +89,11 @@ export async function createProjectsSection(options = {}) {
     customSort = null,
   } = options;
 
-  // Load data
   const projectsData = await loadProjectsData();
   const technologiesData = await loadTechnologies();
 
   let projects = projectsData.projects || [];
 
-  // Apply filters
   const filters = {
     featured: showOnlyFeatured,
     status: "active",
@@ -106,21 +101,18 @@ export async function createProjectsSection(options = {}) {
   };
   projects = filterProjects(projects, filters);
 
-  // Apply sorting
   const sortBy =
     customSort?.by || projectsData.settings?.sortBy || "dateCreated";
   const sortOrder =
     customSort?.order || projectsData.settings?.sortOrder || "desc";
   projects = sortProjects(projects, sortBy, sortOrder);
 
-  // Limit number of projects
   const maxCount =
     maxProjects ||
     projectsData.settings?.maxFeaturedProjects ||
     projects.length;
   projects = projects.slice(0, maxCount);
 
-  // Create section
   const section = document.createElement("section");
   section.className = "projects-section projects-fade";
 
@@ -140,7 +132,6 @@ export async function createProjectsSection(options = {}) {
   const cardsContainer = document.createElement("div");
   cardsContainer.className = "projects-cards";
 
-  // Create cards
   projects.forEach((project) => {
     const card = createProjectCard(project, technologiesData);
     cardsContainer.appendChild(card);
@@ -150,46 +141,6 @@ export async function createProjectsSection(options = {}) {
   section.appendChild(cardsContainer);
 
   return section;
-}
-
-/**
- * Add a new project programmatically
- * @param {Object} projectData - Project data object
- * @returns {Promise<boolean>} Success status
- */
-export async function addProject(projectData) {
-  try {
-    // This would typically be handled by your backend/CMS
-    // For now, this is a template for the data structure
-    const newProject = {
-      id: projectData.id || generateProjectId(projectData.title),
-      title: projectData.title,
-      description: projectData.description,
-      image: {
-        src:
-          projectData.image?.src ||
-          "public/assets/images/placeholder-project.jpg",
-        alt: projectData.image?.alt || `${projectData.title} screenshot`,
-      },
-      technologies: projectData.technologies || [],
-      links: {
-        live: projectData.links?.live || "",
-        repository: projectData.links?.repository || "",
-      },
-      featured: projectData.featured || false,
-      dateCreated:
-        projectData.dateCreated || new Date().toISOString().split("T")[0],
-      status: projectData.status || "active",
-    };
-
-    // In a real implementation, this would update the actual JSON file
-    // For now, this provides a template for the data structure
-
-    return true;
-  } catch (error) {
-    console.error("Failed to add project:", error);
-    return false;
-  }
 }
 
 /**

@@ -9,6 +9,14 @@
   --textTitle: var(--text);
   --textBody: color-mix(in lab, var(--text) 80%, transparent);
   --textLight: color-mix(in lab, var(--text) 60%, transparent);
+  --font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
+    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  --overlay-light: rgba(255, 255, 255, 0.05);
+  --overlay-medium: rgba(255, 255, 255, 0.1);
+  --overlay-strong: rgba(255, 255, 255, 0.2);
+  --gray-light: #888;
+  --gray-medium: #e0e0e0;
+  --surface-elevated: #222;
 }
 
 html,
@@ -23,8 +31,7 @@ body {
 
 h1 {
   margin: 0;
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 500;
   font-size: 25px;
   line-height: 1.1;
@@ -37,8 +44,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 600;
   font-size: 100px;
   line-height: 0.8;
@@ -47,8 +53,7 @@ h6 {
 
 p {
   margin: 0;
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -66,8 +71,7 @@ main {
 }
 
 span {
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -75,8 +79,7 @@ span {
 }
 
 button {
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 500;
   background-color: var(--primary);
   color: var(--text);
@@ -104,11 +107,10 @@ button {
   filter: invert(1) brightness(2);
 }
 
-/* =================================SHARED BUTTON STYLINGIS ============================= */
+/* -----------------------------------------------SHARED BUTTON STYLINGIS -- */
 
 .btn-base {
-  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
-    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
   font-weight: 500;
   border: none;
   cursor: pointer;
@@ -140,7 +142,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--overlay-medium);
   clip-path: polygon(
     0 0,
     100% 0,
@@ -200,16 +202,16 @@ button {
 }
 
 .btn-primary:hover::before {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--overlay-strong);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--overlay-light);
   color: var(--text, #fff);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--overlay-medium);
   transform: translateY(-2px);
 }
 

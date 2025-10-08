@@ -3,7 +3,6 @@ export function createProjectCard(project, technologiesData) {
   card.className = "project-card";
 
   const img = document.createElement("img");
-  // Handle both old and new data structures
   img.src = project.image?.src || project.img;
   img.alt = project.image?.alt || project.alt;
   img.className = "project-card-img";
@@ -22,7 +21,6 @@ export function createProjectCard(project, technologiesData) {
   const tagsContainer = document.createElement("div");
   tagsContainer.className = "project-card-tags";
 
-  // Handle both old (tags) and new (technologies) property names
   const techs = project.technologies || project.tags || [];
   if (techs && technologiesData) {
     techs.forEach((tagKey) => {
@@ -41,11 +39,9 @@ export function createProjectCard(project, technologiesData) {
   const buttonsContainer = document.createElement("div");
   buttonsContainer.className = "project-card-buttons";
 
-  // Live button
   const liveBtn = document.createElement("a");
   liveBtn.className =
     "project-card-btn btn-base btn-clipped-sm btn-sm btn-primary live-btn";
-  // Handle both old and new data structures
   liveBtn.href = project.links?.live || project.liveUrl;
   liveBtn.target = "_blank";
   liveBtn.rel = "noopener noreferrer";
@@ -58,11 +54,9 @@ export function createProjectCard(project, technologiesData) {
   liveBtn.appendChild(liveIcon);
   liveBtn.appendChild(document.createTextNode("Live link"));
 
-  // Repo button
   const repoBtn = document.createElement("a");
   repoBtn.className =
     "project-card-btn btn-base btn-clipped-sm btn-sm btn-secondary repo-btn";
-  // Handle both old and new data structures
   repoBtn.href = project.links?.repository || project.repoUrl;
   repoBtn.target = "_blank";
   repoBtn.rel = "noopener noreferrer";

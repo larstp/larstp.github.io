@@ -2,34 +2,9 @@ import { getMainTitleHTML } from "./utils/mainTitle.js";
 import { createContactSection } from "./utils/contactForm.js";
 import { initScrollIndicator } from "./utils/scroller.js";
 import { createProjectsSection } from "./utils/projectManager.js";
+import { smoothScrollTo } from "./utils/smoothScroll.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
-  function smoothScrollTo(targetY, duration = 800) {
-    const start = window.scrollY || window.pageYOffset;
-    const distance = targetY - start;
-
-    if (distance === 0) {
-      return;
-    }
-
-    const easeInOutCubic = (t) =>
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    let startTime = null;
-
-    function animateScroll(currentTime) {
-      if (!startTime) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = easeInOutCubic(progress);
-      const currentPosition = start + distance * ease;
-      window.scrollTo(0, currentPosition);
-      if (progress < 1) {
-        requestAnimationFrame(animateScroll);
-      }
-    }
-    requestAnimationFrame(animateScroll);
-  }
-
   const main = document.getElementById("main-content");
   if (!main) return;
 
@@ -53,7 +28,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   main.appendChild(heroScene);
 
-  // Use the new project manager
   const projects = await createProjectsSection();
   main.appendChild(projects);
 
