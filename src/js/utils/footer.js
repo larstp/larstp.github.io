@@ -6,8 +6,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const copyrightText = document.createElement("p");
   copyrightText.className = "footer-copyright";
-  copyrightText.textContent =
-    "© 2025 EDGEmedia - Lars Torp Pettersen. All rights reserved.";
+
+  const copyrightStart = document.createTextNode("© 2025 ");
+
+  const edgeLink = document.createElement("a");
+  edgeLink.href = "https://www.edgefilm.no";
+  edgeLink.target = "_blank";
+  edgeLink.rel = "noopener noreferrer";
+  edgeLink.className = "footer-link";
+  edgeLink.textContent = "EDGEmedia";
+
+  const copyrightMiddle = document.createTextNode(" - Lars Torp Pettersen.");
+
+  const lineBreak = document.createElement("br");
+
+  const copyrightEnd = document.createTextNode(" All rights reserved.");
+
+  copyrightText.appendChild(copyrightStart);
+  copyrightText.appendChild(edgeLink);
+  copyrightText.appendChild(copyrightMiddle);
+  copyrightText.appendChild(lineBreak);
+  copyrightText.appendChild(copyrightEnd);
 
   footer.appendChild(copyrightText);
 });
