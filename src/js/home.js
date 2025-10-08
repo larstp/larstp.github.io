@@ -2,6 +2,7 @@ import { getMainTitleHTML } from "./utils/mainTitle.js";
 import { createContactSection } from "./utils/contactForm.js";
 import { initScrollIndicator } from "./utils/scroller.js";
 import { createProjectsSection } from "./utils/projectManager.js";
+import { createSkillsSection } from "./utils/skills.js";
 import { smoothScrollTo } from "./utils/smoothScroll.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -31,6 +32,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   const projects = await createProjectsSection();
   main.appendChild(projects);
 
+  const skills = createSkillsSection();
+  main.appendChild(skills);
+
   const contact = createContactSection();
   main.appendChild(contact);
 
@@ -39,8 +43,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   }, 2500);
 
   setTimeout(() => {
-    contact.classList.add("contact-fade-in");
+    skills.classList.add("skills-fade-in");
   }, 3000);
+
+  setTimeout(() => {
+    contact.classList.add("contact-fade-in");
+  }, 3500);
 
   initScrollIndicator();
 
@@ -59,7 +67,24 @@ document.addEventListener("DOMContentLoaded", async function () {
       "I'm Lars, a cinematographer and avid astronomy enthusiast living in Oslo. I'm currently studying Front-End Development and UI/UX Design at NOROFF, where I'm working on building a solid foundation in HTML, CSS and JavaScript. I care greatly for all aspects of design, and I'm driven by a desire to create digital experiences that are both efficient and engaging. I am actively looking for opportunities to leverage my growing skills to solve real-world problems and contribute to a design-forward team.";
 
     const p2 = document.createElement("p");
-    p2.textContent = "Let's build something stellar together.";
+    p2.style.display = "flex";
+    p2.style.alignItems = "center";
+    p2.style.gap = "8px";
+
+    const stellarText = document.createTextNode(
+      "Let's build something stellar together!"
+    );
+    p2.appendChild(stellarText);
+
+    const rocketIcon = document.createElement("img");
+    rocketIcon.src =
+      "public/assets/icons/streamline-ultimate_space-rocket-earth.svg";
+    rocketIcon.alt = "Space rocket icon";
+    rocketIcon.style.width = "24px";
+    rocketIcon.style.height = "24px";
+    rocketIcon.style.filter = "invert(1) brightness(2)";
+    rocketIcon.style.flexShrink = "0";
+    p2.appendChild(rocketIcon);
 
     const btnContainer = document.createElement("div");
     btnContainer.className = "portfolio-buttons";

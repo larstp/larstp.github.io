@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   desktopNavList.className = "desktop-nav-list";
   [
     { text: "Projects", href: "#projects" },
+    { text: "Skills", href: "#skills" },
     { text: "Contact", href: "#contact" },
     { text: "GitHub", href: "https://github.com/larstp", target: "_blank" },
   ].forEach((item) => {
@@ -56,6 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
           const targetY = projectsSection.offsetTop - 100;
+          smoothScrollTo(targetY);
+        }
+      });
+    }
+
+    if (item.text === "Skills") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const skillsSection = document.querySelector(".skills-section");
+        if (skillsSection) {
+          const targetY = skillsSection.offsetTop - 100;
           smoothScrollTo(targetY);
         }
       });
@@ -136,6 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
       iconAlt: "Projects icon",
     },
     {
+      text: "Skills",
+      href: "#skills",
+      icon: "public/assets/icons/streamline-ultimate_space-rocket-earth.svg",
+      iconAlt: "Skills icon",
+    },
+    {
       text: "Contact",
       href: "#contact",
       icon: "public/assets/icons/material-symbols_mail-rounded.svg",
@@ -161,6 +179,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const projectsSection = document.querySelector(".projects-section");
         if (projectsSection) {
           const targetY = projectsSection.offsetTop - 100;
+          smoothScrollTo(targetY);
+          menuOpen = false;
+          dropdown.classList.remove("open");
+          menuBtn.classList.remove("open");
+          document.body.classList.remove("header-menu-open");
+        }
+      });
+    }
+
+    if (item.text === "Skills") {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        const skillsSection = document.querySelector(".skills-section");
+        if (skillsSection) {
+          const targetY = skillsSection.offsetTop - 100;
           smoothScrollTo(targetY);
           menuOpen = false;
           dropdown.classList.remove("open");
@@ -229,11 +262,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function initScrollNavigation() {
     const sections = [
       { id: "projects", selector: ".projects-section" },
+      { id: "skills", selector: ".skills-section" },
       { id: "contact", selector: ".contact-section" },
     ];
 
     const navLinks = {
       projects: document.querySelectorAll('a[href="#projects"]'),
+      skills: document.querySelectorAll('a[href="#skills"]'),
       contact: document.querySelectorAll('a[href="#contact"]'),
     };
 

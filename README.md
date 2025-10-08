@@ -114,10 +114,16 @@ npm run validate-data
 ├── src/                      # Source code
 │   ├── css/
 │   │   ├── utils/           # Component styles
+│   │   │   ├── skills.css   # Interactive skills section
+│   │   │   ├── header.css   # Navigation components
+│   │   │   └── ...          # Other component styles
 │   │   ├── index.css        # Main stylesheet
 │   │   └── style.css        # Global utilities
 │   ├── js/
 │   │   └── utils/           # JavaScript modules
+│   │       ├── skills.js    # Skills section functionality
+│   │       ├── smoothScroll.js # Shared scrolling utilities
+│   │       └── ...          # Other modules
 │   ├── data/               # JSON data files
 │   │   ├── projects.json   # Project metadata
 │   │   └── technologies.json # Technology definitions
@@ -137,6 +143,8 @@ npm run validate-data
 - **Smooth Scrolling** - Custom easing functions for natural navigation
 - **Smart Navigation** - Scroll-based active section highlighting
 - **Interactive Cards** - Hover effects and clipped borders
+- **Interactive Skills Section** - Technology showcase with grayscale-to-color hover effects
+- **Mobile-Optimized Skills** - Full-color display on touch devices (viewport < 1000px)
 - **Performance Optimized** - Lazy loading and efficient animations
 
 ### Project Management:
@@ -153,6 +161,8 @@ npm run validate-data
 - **DRY Button System** - Shared styling with variants (.btn-primary, .btn-secondary)
 - **Custom Properties** - CSS variables for theming
 - **Icon Integration** - SVG icons with hover states
+- **Skills Categories** - Modular skill organization (Programming, Frontend, Tools, Creative Software)
+- **Responsive Interactions** - Desktop hover effects, mobile-optimized display
 
 ## 6. Project Management
 
