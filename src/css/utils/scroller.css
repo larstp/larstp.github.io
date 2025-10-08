@@ -2,40 +2,56 @@
 /* Pure CSS Animated Mouse Scroll Icon - Deepak K Vijayan */
 
 .scroll-downs {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 
-  width: 34px;
-  height: 55px;
+  width: 24px;
+  height: 40px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+
+  pointer-events: none;
 }
+
+.scroll-downs.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
 .mousey {
-  width: 3px;
-  padding: 10px 15px;
-  height: 35px;
-  border: 2px solid #fff;
+  width: 2px;
+  padding: 8px 10px;
+  height: 25px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
   border-radius: 25px;
-  opacity: 0.75;
   box-sizing: content-box;
+  opacity: 30%;
 }
+
 .scroller {
-  width: 3px;
-  height: 10px;
+  width: 2px;
+  height: 8px;
   border-radius: 25%;
-  background-color: #fff;
-  animation-name: scroll;
-  animation-duration: 2.2s;
+  background-color: rgba(255, 255, 255, 0.75);
+  animation: scroll 2.2s infinite;
 }
 
-/*
-
-<div class="scroll-downs">
-  <div class="mousey">
-    <div class="scroller"></div>
-  </div>
-</div>
-
-*/
+@keyframes scroll {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}

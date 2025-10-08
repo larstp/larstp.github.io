@@ -1,5 +1,6 @@
 import { getMainTitleHTML } from "./utils/mainTitle.js";
 import { createContactSection } from "./utils/contactForm.js";
+import { initScrollIndicator } from "./utils/scroller.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const main = document.getElementById("main-content");
@@ -38,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
   setTimeout(() => {
     contact.classList.add("contact-fade-in");
   }, 3000);
+
+  initScrollIndicator();
 
   function createScenePortfolioSection() {
     const portfolio = document.createElement("section");

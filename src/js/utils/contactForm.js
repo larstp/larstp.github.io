@@ -34,6 +34,20 @@ function createContactForm() {
 
   const form = document.createElement("form");
   form.className = "contact-form";
+  form.action = "https://api.web3forms.com/submit";
+  form.method = "POST";
+
+  const accessKeyInput = document.createElement("input");
+  accessKeyInput.type = "hidden";
+  accessKeyInput.name = "access_key";
+  accessKeyInput.value = "cc45b2aa-f126-41ef-b4ba-7dd8e4f3dcd2";
+
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  nameInput.name = "name";
+  nameInput.placeholder = "Name";
+  nameInput.required = true;
+  nameInput.className = "contact-input";
 
   const emailInput = document.createElement("input");
   emailInput.type = "email";
@@ -63,6 +77,8 @@ function createContactForm() {
 
   form.addEventListener("submit", handleFormSubmit);
 
+  form.appendChild(accessKeyInput);
+  form.appendChild(nameInput);
   form.appendChild(emailInput);
   form.appendChild(messageInput);
   form.appendChild(submitButton);
@@ -78,7 +94,7 @@ function createContactLinks() {
   const linksData = [
     {
       text: "E-Mail",
-      href: "mailto:your-email@example.com", // -------------------------Update with actual email
+      href: "mailto:github.enviably914@passinbox.com",
       icon: "public/assets/icons/material-symbols_mail-rounded.svg",
       iconAlt: "Email icon",
     },
@@ -90,13 +106,13 @@ function createContactLinks() {
     },
     {
       text: "LinkedIn",
-      href: "https://linkedin.com/in/your-profile", // ---------------------Update with actual LinkedIn
+      href: "https://www.linkedin.com/in/larstpet/",
       icon: "public/assets/icons/mdi_linkedin.svg",
       iconAlt: "LinkedIn icon",
     },
     {
       text: "SubStack",
-      href: "https://your-substack.substack.com", // ---------------------Update with actual SubStack
+      href: "https://substack.com/@larstp",
       icon: "public/assets/icons/bi_substack.svg",
       iconAlt: "SubStack icon",
     },
@@ -131,15 +147,35 @@ function createContactLinks() {
 function handleFormSubmit(e) {
   e.preventDefault();
 
-  const formData = new FormData(e.target);
-  const email = formData.get("email");
-  const message = formData.get("message");
+  const form = e.target;
+  const formData = new FormData(form);
 
-  // For now, just log the form data
-  // You can replace this with your actual form submission logic
-  // console.log("Form submitted:", { email, message });
+  const submitButton = form.querySelector(".contact-submit-btn");
+  const originalText = submitButton.textContent;
+  submitButton.textContent = "Sending...";
+  submitButton.disabled = true;
 
-  alert("Thank you for your message! I'll get back to you soon.");
-
-  e.target.reset();
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Thank you for your message! I'll get back to you soon.");
+        form.reset();
+      } else {
+        throw new Error("Form submission failed");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert(
+        "Sorry, there was an error sending your message. Please try again or contact me directly via email."
+      );
+    })
+    .finally(() => {
+      submitButton.textContent = originalText;
+      submitButton.disabled = false;
+    });
 }
