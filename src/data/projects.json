@@ -1,0 +1,60 @@
+{
+  "projects": [
+    {
+      "id": "rainy-days",
+      "title": "RainyDays",
+      "description": "My first HTML & CSS, and later JS project; a e-commerce site for a fictional outdoor clothing brand specializing in outdoor gear.",
+      "image": {
+        "src": "public/assets/images/projects/RainyDays.webp",
+        "alt": "RainyDays logo"
+      },
+      "technologies": ["html", "css", "javascript", "figma"],
+      "links": {
+        "live": "https://larstp.github.io/RainyDays/",
+        "repository": "https://github.com/larstp/RainyDays"
+      },
+      "featured": true,
+      "dateCreated": "2024-12-01",
+      "status": "active"
+    },
+    {
+      "id": "oslo-community-science-museum",
+      "title": "Oslo Community Science Museum",
+      "description": "My Semester Project 1 course project: Making a website for the local Oslo Community Science Museum.",
+      "image": {
+        "src": "public/assets/images/projects/OCSM.webp",
+        "alt": "Oslo Community Science Museum logo"
+      },
+      "technologies": ["html", "css", "figma"],
+      "links": {
+        "live": "https://larstp.github.io/Oslo-Community-Science-Museum/",
+        "repository": "https://github.com/larstp/Oslo-Community-Science-Museum"
+      },
+      "featured": true,
+      "dateCreated": "2025-02-20",
+      "status": "active"
+    },
+    {
+      "id": "e-co",
+      "title": "E-Co",
+      "description": "My 1st Year Project Exam:A clean, modern e-commerce application with a focus on sustainability and eco-friendly products.",
+      "image": {
+        "src": "public/assets/images/projects/E-Co.webp",
+        "alt": "E-Co logo"
+      },
+      "technologies": ["html", "css", "javascript", "figma"],
+      "links": {
+        "live": "https://larstp.github.io/E-Co/",
+        "repository": "https://github.com/larstp/E-Co"
+      },
+      "featured": true,
+      "dateCreated": "2025-05-20",
+      "status": "active"
+    }
+  ],
+  "settings": {
+    "maxFeaturedProjects": 6,
+    "sortBy": "dateCreated",
+    "sortOrder": "desc"
+  }
+}

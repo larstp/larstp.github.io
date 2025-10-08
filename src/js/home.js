@@ -1,8 +1,9 @@
 import { getMainTitleHTML } from "./utils/mainTitle.js";
 import { createContactSection } from "./utils/contactForm.js";
 import { initScrollIndicator } from "./utils/scroller.js";
+import { createProjectsSection } from "./utils/projectManager.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   function smoothScrollTo(targetY, duration = 800) {
     const start = window.scrollY || window.pageYOffset;
     const distance = targetY - start;
@@ -52,7 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   main.appendChild(heroScene);
 
-  const projects = createProjectsSection();
+  // Use the new project manager
+  const projects = await createProjectsSection();
   main.appendChild(projects);
 
   const contact = createContactSection();
@@ -89,11 +91,12 @@ document.addEventListener("DOMContentLoaded", function () {
     btnContainer.className = "portfolio-buttons";
 
     const contactBtn = document.createElement("button");
-    contactBtn.className = "portfolio-btn contact-btn";
+    contactBtn.className =
+      "portfolio-btn btn-base btn-clipped btn-lg btn-primary contact-btn";
     const contactIcon = document.createElement("img");
     contactIcon.src = "public/assets/icons/material-symbols_mail-rounded.svg";
     contactIcon.alt = "Contact icon";
-    contactIcon.className = "btn-icon";
+    contactIcon.className = "btn-icon-md";
     contactBtn.appendChild(contactIcon);
     contactBtn.appendChild(document.createTextNode("Contact me"));
 
@@ -106,11 +109,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const githubBtn = document.createElement("button");
-    githubBtn.className = "portfolio-btn github-btn";
+    githubBtn.className =
+      "portfolio-btn btn-base btn-clipped btn-lg btn-secondary github-btn";
     const githubIcon = document.createElement("img");
     githubIcon.src = "public/assets/icons/mdi_github.svg";
     githubIcon.alt = "GitHub icon";
-    githubIcon.className = "btn-icon";
+    githubIcon.className = "btn-icon-md";
     githubBtn.appendChild(githubIcon);
     githubBtn.appendChild(document.createTextNode("GitHub"));
 
@@ -139,68 +143,5 @@ document.addEventListener("DOMContentLoaded", function () {
     img.textContent = "[Your Photo Here]";
     imageContainer.appendChild(img);
     return imageContainer;
-  }
-
-  function createProjectsSection() {
-    const section = document.createElement("section");
-    section.className = "projects-section projects-fade";
-
-    const textContainer = document.createElement("div");
-    textContainer.className = "projects-text";
-    const heading = document.createElement("h3");
-    heading.textContent = "Featured Projects";
-    const desc = document.createElement("p");
-    desc.textContent =
-      "A few of my favorite web projects. Click a card to view the live site.";
-    textContainer.appendChild(heading);
-    textContainer.appendChild(desc);
-
-    const cardsContainer = document.createElement("div");
-    cardsContainer.className = "projects-cards";
-
-    const projects = [
-      {
-        title: "Astro Gallery",
-        url: "https://astro.larstp.dev/",
-        img: "public/assets/images/astro-gallery-thumb.jpg",
-        alt: "Astro Gallery screenshot",
-      },
-      {
-        title: "Film Portfolio",
-        url: "https://film.larstp.dev/",
-        img: "public/assets/images/film-portfolio-thumb.jpg",
-        alt: "Film Portfolio screenshot",
-      },
-      {
-        title: "Weather App",
-        url: "https://weather.larstp.dev/",
-        img: "public/assets/images/weather-app-thumb.jpg",
-        alt: "Weather App screenshot",
-      },
-    ];
-    projects.forEach((proj) => {
-      const card = document.createElement("a");
-      card.className = "project-card";
-      card.href = proj.url;
-      card.target = "_blank";
-      card.rel = "noopener noreferrer";
-
-      const img = document.createElement("img");
-      img.src = proj.img;
-      img.alt = proj.alt;
-      img.className = "project-card-img";
-
-      const title = document.createElement("div");
-      title.className = "project-card-title";
-      title.textContent = proj.title;
-
-      card.appendChild(img);
-      card.appendChild(title);
-      cardsContainer.appendChild(card);
-    });
-
-    section.appendChild(textContainer);
-    section.appendChild(cardsContainer);
-    return section;
   }
 });

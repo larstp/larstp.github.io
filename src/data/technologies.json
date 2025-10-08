@@ -1,0 +1,99 @@
+{
+  "technologies": {
+    "html": {
+      "name": "HTML",
+      "color": "#E34F26",
+      "category": "markup"
+    },
+    "css": {
+      "name": "CSS",
+      "color": "#1572B6",
+      "category": "styling"
+    },
+    "javascript": {
+      "name": "JavaScript",
+      "color": "#F7DF1E",
+      "category": "programming"
+    },
+    "react": {
+      "name": "React",
+      "color": "#61DAFB",
+      "category": "framework"
+    },
+    "vue": {
+      "name": "Vue.js",
+      "color": "#4FC08D",
+      "category": "framework"
+    },
+    "tailwind": {
+      "name": "Tailwind CSS",
+      "color": "#38B2AC",
+      "category": "styling"
+    },
+    "sass": {
+      "name": "Sass",
+      "color": "#CC6699",
+      "category": "styling"
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "color": "#3178C6",
+      "category": "programming"
+    },
+    "nodejs": {
+      "name": "Node.js",
+      "color": "#339933",
+      "category": "runtime"
+    },
+    "express": {
+      "name": "Express",
+      "color": "#000000",
+      "category": "framework"
+    },
+    "mongodb": {
+      "name": "MongoDB",
+      "color": "#47A248",
+      "category": "database"
+    },
+    "postgresql": {
+      "name": "PostgreSQL",
+      "color": "#336791",
+      "category": "database"
+    },
+    "vite": {
+      "name": "Vite",
+      "color": "#646CFF",
+      "category": "tooling"
+    },
+    "webpack": {
+      "name": "Webpack",
+      "color": "#8DD6F9",
+      "category": "tooling"
+    },
+    "figma": {
+      "name": "Figma",
+      "color": "#F24E1E",
+      "category": "design"
+    },
+    "photoshop": {
+      "name": "Photoshop",
+      "color": "#31A8FF",
+      "category": "design"
+    },
+    "git": {
+      "name": "Git",
+      "color": "#F05032",
+      "category": "tooling"
+    },
+    "netlify": {
+      "name": "Netlify",
+      "color": "#00C7B7",
+      "category": "deployment"
+    },
+    "vercel": {
+      "name": "Vercel",
+      "color": "#000000",
+      "category": "deployment"
+    }
+  }
+}

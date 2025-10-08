@@ -103,3 +103,137 @@ button {
   display: inline-block;
   filter: invert(1) brightness(2);
 }
+
+/* =================================SHARED BUTTON STYLINGIS ============================= */
+
+.btn-base {
+  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont,
+    "San Francisco", Roboto, "Segoe UI", Ubuntu, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.btn-clipped {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+}
+
+.btn-clipped::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  z-index: -1;
+  padding: 2px;
+  background-clip: content-box;
+}
+
+.btn-clipped-sm {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%
+  );
+}
+
+.btn-clipped-sm::before {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%
+  );
+  padding: 1px;
+}
+
+.btn-lg {
+  padding: 16px 28px;
+  font-size: 16px;
+}
+
+.btn-md {
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+.btn-sm {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: var(--primary, #0055ff);
+  color: var(--text, #fff);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent, #0066ff);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text, #fff);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:hover::before {
+  background: var(--primary, #0055ff);
+}
+
+.btn-icon-sm {
+  width: 16px;
+  height: 16px;
+  filter: invert(1) brightness(2);
+  flex-shrink: 0;
+}
+
+.btn-icon-md {
+  width: 20px;
+  height: 20px;
+  filter: invert(1) brightness(2);
+  flex-shrink: 0;
+}
+
+.btn-icon-lg {
+  width: 24px;
+  height: 24px;
+  filter: invert(1) brightness(2);
+  flex-shrink: 0;
+}

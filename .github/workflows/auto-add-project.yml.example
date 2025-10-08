@@ -1,0 +1,90 @@
+# Example GitHub Action for Auto-Adding Projects
+# Save this as .github/workflows/auto-add-project.yml
+#
+# SECURITY NOTE: This is an example template only!
+# - Review all code before activating
+# - Consider using pull requests instead of direct commits
+# - Test thoroughly in a separate repo first
+# - Only use with trusted project data sources
+
+name: Auto Add Project
+
+on:
+  push:
+    paths:
+      - 'projects/**'  # Trigger when new project folders are added
+  repository_dispatch:
+    types: [add-project]  # Manual trigger with project data
+
+jobs:
+  add-project:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Read project metadata
+      id: project-meta
+      run: |
+        # Example: Read project.json from the new project folder
+        if [ -f "projects/${{ github.event.client_payload.project_name }}/project.json" ]; then
+          PROJECT_DATA=$(cat "projects/${{ github.event.client_payload.project_name }}/project.json")
+          echo "project_data=$PROJECT_DATA" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Update projects.json
+      run: |
+        # Use Node.js to safely update the JSON file
+        node -e "
+          const fs = require('fs');
+          const path = 'src/data/projects.json';
+          const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+          
+          const newProject = {
+            id: '${{ github.event.client_payload.project_id }}',
+            title: '${{ github.event.client_payload.title }}',
+            description: '${{ github.event.client_payload.description }}',
+            image: {
+              src: 'public/assets/images/${{ github.event.client_payload.image }}',
+              alt: '${{ github.event.client_payload.title }} screenshot'
+            },
+            technologies: ${{ github.event.client_payload.technologies }},
+            links: {
+              live: '${{ github.event.client_payload.live_url }}',
+              repository: '${{ github.event.client_payload.repo_url }}'
+            },
+            featured: true,
+            dateCreated: '${{ github.event.client_payload.date }}' || new Date().toISOString().split('T')[0],
+            status: 'active'
+          };
+          
+          data.projects.unshift(newProject);
+          fs.writeFileSync(path, JSON.stringify(data, null, 2));
+        "
+    
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add src/data/projects.json
+        git commit -m "Auto-add project: ${{ github.event.client_payload.title }}" || exit 0
+        git push
+
+# Usage:
+# curl -X POST \
+#   -H "Accept: application/vnd.github.v3+json" \
+#   -H "Authorization: token YOUR_TOKEN" \
+#   https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches \
+#   -d '{
+#     "event_type": "add-project",
+#     "client_payload": {
+#       "project_id": "new-awesome-project",
+#       "title": "New Awesome Project",
+#       "description": "This is my newest project with amazing features",
+#       "technologies": ["html", "css", "javascript", "react"],
+#       "live_url": "https://awesome.project.dev/",
+#       "repo_url": "https://github.com/username/awesome-project",
+#       "image": "awesome-project-thumb.jpg"
+#     }
+#   }'

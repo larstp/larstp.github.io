@@ -65,12 +65,13 @@ function createContactForm() {
 
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.className = "contact-submit-btn";
+  submitButton.className =
+    "contact-submit-btn btn-base btn-clipped btn-lg btn-primary";
 
   const sendIcon = document.createElement("img");
-  sendIcon.src = "public/assets/icons/ic_round-send.svg";
+  sendIcon.src = "public/assets/icons/fa6-solid_shuttle-space.svg";
   sendIcon.alt = "Send icon";
-  sendIcon.className = "btn-icon";
+  sendIcon.className = "btn-icon-md";
 
   submitButton.appendChild(sendIcon);
   submitButton.appendChild(document.createTextNode("Send message"));

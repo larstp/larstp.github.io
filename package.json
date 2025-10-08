@@ -1,0 +1,18 @@
+{
+  "name": "larstp-portfolio",
+  "version": "1.0.0",
+  "description": "Lars Torp Pettersen's Portfolio Website",
+  "type": "module",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "add-project": "node tools/add-project.js",
+    "validate-data": "node tools/validate-projects.js"
+  },
+  "keywords": [
+    "portfolio",
+    "frontend",
+    "web-development"
+  ],
+  "author": "Lars Torp Pettersen",
+  "license": "MIT"
+}
