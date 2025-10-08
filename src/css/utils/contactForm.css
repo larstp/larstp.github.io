@@ -23,7 +23,7 @@
 .contact-subheading {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--textBody, rgba(255, 255, 255, 0.8));
+  color: var(--textLight, rgba(255, 255, 255, 0.7));
   margin: 0 0 60px 0;
   max-width: 600px;
   margin-left: auto;

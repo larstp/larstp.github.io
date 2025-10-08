@@ -239,12 +239,14 @@
 }
 
 .desktop-nav-list li a:hover::after,
-.desktop-nav-list li a:focus-visible::after {
+.desktop-nav-list li a:focus-visible::after,
+.desktop-nav-list li a.nav-active::after {
   opacity: 1;
   transform: scaleX(1);
 }
 
 .desktop-nav-list li a:hover,
-.desktop-nav-list li a:focus-visible {
+.desktop-nav-list li a:focus-visible,
+.desktop-nav-list li a.nav-active {
   color: #fff;
 }

@@ -105,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.body.insertBefore(desktopHeader, document.body.firstChild);
 
+  initScrollNavigation();
+
   const menuBtn = document.createElement("button");
   menuBtn.className = "header-menu-btn";
   menuBtn.setAttribute("aria-label", "Menu");
@@ -246,4 +248,66 @@ document.addEventListener("DOMContentLoaded", function () {
   mobileHeader.appendChild(dropdown);
 
   document.body.insertBefore(mobileHeader, document.body.firstChild);
+
+  function initScrollNavigation() {
+    const sections = [
+      { id: "projects", selector: ".projects-section" },
+      { id: "contact", selector: ".contact-section" },
+    ];
+
+    const navLinks = {
+      projects: document.querySelectorAll('a[href="#projects"]'),
+      contact: document.querySelectorAll('a[href="#contact"]'),
+    };
+
+    let currentActiveSection = null;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let newActiveSection = null;
+        let maxRatio = 0;
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            newActiveSection = entry.target.dataset.navSection;
+          }
+        });
+
+        if (newActiveSection !== currentActiveSection) {
+          Object.values(navLinks).forEach((links) => {
+            links.forEach((link) => link.classList.remove("nav-active"));
+          });
+
+          if (newActiveSection && navLinks[newActiveSection]) {
+            navLinks[newActiveSection].forEach((link) =>
+              link.classList.add("nav-active")
+            );
+          }
+
+          currentActiveSection = newActiveSection;
+        }
+      },
+      {
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+        rootMargin: "-64px 0px -40% 0px",
+      }
+    );
+
+    function observeSections() {
+      sections.forEach((section) => {
+        const element = document.querySelector(section.selector);
+        if (element) {
+          element.dataset.navSection = section.id;
+          observer.observe(element);
+        }
+      });
+    }
+
+    observeSections();
+
+    setTimeout(observeSections, 1000);
+
+    setTimeout(observeSections, 2000);
+  }
 });
