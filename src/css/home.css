@@ -98,19 +98,80 @@
 }
 .portfolio-buttons {
   display: flex;
+  flex-direction: row;
   gap: 1rem;
   margin-top: 1rem;
 }
+
 .portfolio-btn {
-  padding: 0.75em 2em;
+  padding: 16px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
   transition: all 0.3s ease;
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
 }
+
+.portfolio-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  z-index: -1;
+  padding: 2px;
+  background-clip: content-box;
+}
+
+.portfolio-btn.contact-btn {
+  background-color: var(--primary, #0055ff);
+  color: var(--text, #fff);
+}
+
 .portfolio-btn.github-btn {
-  background: #333;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text, #fff);
 }
 .portfolio-btn:hover {
-  background: var(--accent, #0055ff);
   transform: translateY(-2px);
+}
+
+.portfolio-btn.contact-btn:hover {
+  background-color: var(--accent, #0066ff);
+}
+
+.portfolio-btn.contact-btn:hover::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.portfolio-btn.github-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-btn.github-btn:hover::before {
+  background: var(--primary, #0055ff);
 }
 
 .portfolio-right {
@@ -168,7 +229,7 @@
   flex-direction: column;
   align-items: center;
   background: color-mix(in lab, var(--background) 90%, #fff 5%);
-  border-radius: 18px;
+  border-radius: 2px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
   text-decoration: none;
   color: var(--text, #fff);

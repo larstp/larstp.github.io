@@ -35,11 +35,9 @@ export function initScrollIndicator() {
     }
   }
 
-  // Initial check to set the correct state
   const initialScrollY = window.scrollY || window.pageYOffset;
   isAtTop = initialScrollY < 100;
 
-  // Only show the indicator after delay if user is at the top
   setTimeout(() => {
     if (isAtTop) {
       scrollIndicator.classList.add("show");
@@ -54,6 +52,5 @@ export function initScrollIndicator() {
     scrollTimeout = setTimeout(handleScroll, 10);
   });
 
-  // Initial check
   handleScroll();
 }

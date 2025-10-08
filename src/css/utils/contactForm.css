@@ -58,7 +58,7 @@
   width: 100%;
   padding: 16px 20px;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border-radius: 2px;
   background: rgba(255, 255, 255, 0.05);
   color: var(--text, #fff);
   font-size: 16px;
@@ -86,24 +86,56 @@
 
 .contact-submit-btn {
   align-self: flex-start;
-  padding: 14px 28px;
+  padding: 16px 28px;
   background-color: var(--primary, #0055ff);
   color: var(--text, #fff);
   border: none;
-  border-radius: 8px;
+  border-radius: 2px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   font-family: inherit;
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+}
+
+.contact-submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  z-index: -1;
+  padding: 2px;
+  background-clip: content-box;
 }
 
 .contact-submit-btn:hover {
   background-color: var(--accent, #0066ff);
   transform: translateY(-2px);
+}
+
+.contact-submit-btn:hover::before {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .contact-submit-btn:active {
@@ -125,18 +157,48 @@
   gap: 16px;
   padding: 16px 20px;
   background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  border-radius: 2px;
   color: var(--text, #fff);
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+}
+
+.contact-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  z-index: -1;
+  padding: 2px;
+  background-clip: content-box;
 }
 
 .contact-link:hover {
   background: rgba(255, 255, 255, 0.1);
-  border-color: var(--primary, #0055ff);
   transform: translateY(-2px);
+}
+
+.contact-link:hover::before {
+  background: var(--primary, #0055ff);
 }
 
 .contact-link-icon {

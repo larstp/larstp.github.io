@@ -81,13 +81,19 @@ button {
   background-color: var(--primary);
   color: var(--text);
   padding: 0.5rem 1rem;
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   flex-direction: row;
   gap: 0.5rem;
   align-items: center;
   border: none;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  ); /* hihi */
 }
 
 .btn-icon {
