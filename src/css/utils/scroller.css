@@ -55,3 +55,9 @@
     opacity: 0;
   }
 }
+
+@media (max-width: 1000px) {
+  .scroll-downs {
+    display: none;
+  }
+}

@@ -121,6 +121,8 @@
   font-size: 1.1rem;
   color: var(--gray-light);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  object-position: center;
 }
 
 /*--------------------------------------------------------------------Projects */

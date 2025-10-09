@@ -137,9 +137,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   function createPortfolioImage() {
     const imageContainer = document.createElement("div");
     imageContainer.className = "portfolio-image";
-    const img = document.createElement("div");
+    const img = document.createElement("img");
     img.className = "portfolio-img-placeholder";
-    img.textContent = "[Your Photo Here]";
+    img.src = "public/assets/images/DSC03075-2.webp";
+    img.alt = "Lars Torp Pettersen - Portfolio photo";
     imageContainer.appendChild(img);
     return imageContainer;
   }
