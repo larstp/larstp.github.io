@@ -2,7 +2,7 @@
 
 ## Project Documentation: Personal Portfolio Website
 
-![Portfolio Screenshot](public/assets/images/portfolio-hero.png)
+![Portfolio Screenshot](public/assets/images/portfolio-screenshot.webp)
 
 ### Contents:
 
