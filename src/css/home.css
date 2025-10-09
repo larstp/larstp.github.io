@@ -123,6 +123,12 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   object-fit: cover;
   object-position: center;
+  transition: all 0.3s ease;
+}
+
+.portfolio-img-placeholder:hover {
+  content: url("../../public/assets/images/crazy.webp");
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 /*--------------------------------------------------------------------Projects */
