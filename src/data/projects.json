@@ -3,7 +3,7 @@
     {
       "id": "rainy-days",
       "title": "RainyDays",
-      "description": "My first HTML & CSS, and later JS project; a e-commerce site for a fictional outdoor clothing brand specializing in outdoor gear.",
+      "description": "My first HTML & CSS, and later JS, project; a e-commerce site for a fictional outdoor clothing brand specializing in outdoor gear.",
       "image": {
         "src": "public/assets/images/projects/RainyDays.webp",
         "alt": "RainyDays logo"
@@ -20,10 +20,10 @@
     {
       "id": "oslo-community-science-museum",
       "title": "Oslo Community Science Museum",
-      "description": "My Semester Project 1 course project: Making a website for the local Oslo Community Science Museum.",
+      "description": "My SP1 course project: Making a website for the local (non-existent) Oslo Community Science Museum using only HTML & CSS.",
       "image": {
         "src": "public/assets/images/projects/OCSM.webp",
-        "alt": "Oslo Community Science Museum logo"
+        "alt": "Screenshot of the Oslo Community Science Museum website"
       },
       "technologies": ["html", "css", "figma"],
       "links": {
@@ -37,10 +37,10 @@
     {
       "id": "e-co",
       "title": "E-Co",
-      "description": "My 1st Year Project Exam:A clean, modern e-commerce application with a focus on sustainability and eco-friendly products.",
+      "description": "My 1st Year Project Exam; Building a clean, modern e-commerce application using what we have learned in HTML, CSS and JavaScript so far.",
       "image": {
         "src": "public/assets/images/projects/E-Co.webp",
-        "alt": "E-Co logo"
+        "alt": "Screenshot of E-Co website"
       },
       "technologies": ["html", "css", "javascript", "figma"],
       "links": {

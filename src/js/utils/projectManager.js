@@ -124,7 +124,7 @@ export async function createProjectsSection(options = {}) {
 
   const desc = document.createElement("p");
   desc.textContent =
-    "A curated selection of my latest projects showcasing modern web development techniques and creative problem-solving. Explore the live demos or check out the code.";
+    "Here's a curated selection of my latest projects showcasing modern web development techniques and creative problem-solving. Explore the live demos or browse my code.";
 
   textContainer.appendChild(heading);
   textContainer.appendChild(desc);
