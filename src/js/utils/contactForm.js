@@ -60,7 +60,7 @@ function createContactForm() {
   messageInput.name = "message";
   messageInput.placeholder = "Message";
   messageInput.required = true;
-  messageInput.rows = 5;
+  messageInput.rows = 6;
   messageInput.className = "contact-textarea";
 
   const submitButton = document.createElement("button");
@@ -91,6 +91,43 @@ function createContactForm() {
 function createContactLinks() {
   const linksContainer = document.createElement("div");
   linksContainer.className = "contact-links-container";
+
+  const downloadData = [
+    {
+      text: "Download CV",
+      href: "public/links/CV.pdf",
+      icon: "public/assets/icons/mi_document.svg",
+      iconAlt: "CV icon",
+      download: "Lars_Torp_Pettersen_CV.pdf",
+    },
+    {
+      text: "Download Cover Letter",
+      href: "public/links/CoverLetter.pdf",
+      icon: "public/assets/icons/humbleicons_document.svg",
+      iconAlt: "Cover Letter icon",
+      download: "Lars_Torp_Pettersen_Cover_Letter.pdf",
+    },
+  ];
+
+  downloadData.forEach((downloadItem) => {
+    const linkElement = document.createElement("a");
+    linkElement.href = downloadItem.href;
+    linkElement.className = "contact-link contact-download-link";
+    linkElement.download = downloadItem.download;
+
+    const icon = document.createElement("img");
+    icon.src = downloadItem.icon;
+    icon.alt = downloadItem.iconAlt;
+    icon.className = "contact-link-icon";
+
+    const text = document.createElement("span");
+    text.textContent = downloadItem.text;
+    text.className = "contact-link-text";
+
+    linkElement.appendChild(icon);
+    linkElement.appendChild(text);
+    linksContainer.appendChild(linkElement);
+  });
 
   const linksData = [
     {
