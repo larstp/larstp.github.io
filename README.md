@@ -275,6 +275,11 @@ See full attribution details in [documentation/documentstion.md](documentation/d
 - **Portfolio:** [larstp.github.io](https://larstp.github.io)
 - **Email:** Available through portfolio contact form
 
+### Documents:
+
+- **CV:** [Download PDF](public/links/CV.pdf)
+- **Cover Letter:** [Download PDF](public/links/CoverLetter.pdf)
+
 ---
 
 _This portfolio represents my journey in front-end development, showcasing both technical skills and design sensibility. Built with modern web standards and a focus on user experience. But I am in the beginning of my journey and I will continue to update as I get better._
