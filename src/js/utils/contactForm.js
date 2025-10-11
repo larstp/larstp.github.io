@@ -221,7 +221,11 @@ function handleFormSubmit(e) {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        alert("Thank you for your message! I'll get back to you soon.");
+        showNotification(
+          "success",
+          "Message Sent Successfully!",
+          "Thank you for your message! I'll get back to you soon."
+        );
         form.reset();
       } else {
         throw new Error("Form submission failed");
@@ -229,7 +233,9 @@ function handleFormSubmit(e) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert(
+      showNotification(
+        "error",
+        "Message Failed to Send",
         "Sorry, there was an error sending your message. Please try again or contact me directly via email."
       );
     })
@@ -237,4 +243,106 @@ function handleFormSubmit(e) {
       submitButton.textContent = originalText;
       submitButton.disabled = false;
     });
+}
+
+// Notification system
+function showNotification(type, title, message) {
+  // Remove any existing notification
+  const existingOverlay = document.querySelector(".notification-overlay");
+  if (existingOverlay) {
+    existingOverlay.remove();
+  }
+
+  // Create notification overlay
+  const overlay = document.createElement("div");
+  overlay.className = "notification-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-labelledby", "notification-title");
+  overlay.setAttribute("aria-describedby", "notification-message");
+
+  // Create notification container
+  const notification = document.createElement("div");
+  notification.className = `notification ${type}`;
+
+  // Create icon
+  const icon = document.createElement("div");
+  icon.className = "notification-icon";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = type === "success" ? "✓" : "✕";
+
+  // Create title
+  const titleElement = document.createElement("h3");
+  titleElement.id = "notification-title";
+  titleElement.className = "notification-title";
+  titleElement.textContent = title;
+
+  // Create message
+  const messageElement = document.createElement("p");
+  messageElement.id = "notification-message";
+  messageElement.className = "notification-message";
+  messageElement.textContent = message;
+
+  // Create close button
+  const button = document.createElement("button");
+  button.className = "notification-button";
+  button.textContent = "OK";
+  button.setAttribute("aria-label", "Close notification");
+
+  // Add click handler to close notification
+  function closeNotification() {
+    overlay.classList.remove("show");
+    setTimeout(() => {
+      if (overlay.parentNode) {
+        overlay.remove();
+      }
+    }, 300);
+  }
+
+  button.addEventListener("click", closeNotification);
+
+  // Close on escape key
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      closeNotification();
+      document.removeEventListener("keydown", handleKeyDown);
+    }
+  }
+  document.addEventListener("keydown", handleKeyDown);
+
+  // Close on overlay click
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      closeNotification();
+    }
+  });
+
+  // Assemble notification
+  notification.appendChild(icon);
+  notification.appendChild(titleElement);
+  notification.appendChild(messageElement);
+  notification.appendChild(button);
+  overlay.appendChild(notification);
+
+  // Add to DOM and show
+  document.body.appendChild(overlay);
+
+  // Focus the button for accessibility
+  setTimeout(() => {
+    button.focus();
+  }, 100);
+
+  // Show with animation
+  requestAnimationFrame(() => {
+    overlay.classList.add("show");
+  });
+
+  // Auto-close after 5 seconds for success messages
+  if (type === "success") {
+    setTimeout(() => {
+      if (document.body.contains(overlay)) {
+        closeNotification();
+      }
+    }, 5000);
+  }
 }
