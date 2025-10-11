@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const hero = document.createElement("section");
   hero.className = "title-hero";
+  hero.setAttribute("aria-label", "Introduction and main title");
   const titleContainer = document.createElement("div");
   titleContainer.className = "main-text";
   titleContainer.innerHTML = getMainTitleHTML();
@@ -29,18 +30,27 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   main.appendChild(heroScene);
 
-  const projects = await createProjectsSection();
-  main.appendChild(projects);
+  try {
+    const projects = await createProjectsSection();
+    main.appendChild(projects);
+
+    setTimeout(() => {
+      projects.classList.add("projects-fade-in");
+    }, 2500);
+  } catch (error) {
+    console.error("Error loading projects section:", error);
+    // Create fallback projects section
+    const fallbackProjects = document.createElement("section");
+    fallbackProjects.className = "projects-section";
+    fallbackProjects.innerHTML = "<p>Projects currently unavailable</p>";
+    main.appendChild(fallbackProjects);
+  }
 
   const skills = createSkillsSection();
   main.appendChild(skills);
 
   const contact = createContactSection();
   main.appendChild(contact);
-
-  setTimeout(() => {
-    projects.classList.add("projects-fade-in");
-  }, 2500);
 
   setTimeout(() => {
     skills.classList.add("skills-fade-in");
@@ -55,6 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   function createScenePortfolioSection() {
     const portfolio = document.createElement("section");
     portfolio.className = "scene-portfolio";
+    portfolio.setAttribute("aria-label", "About Lars - Personal introduction");
 
     const left = document.createElement("div");
     left.className = "portfolio-left";
@@ -92,9 +103,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const contactBtn = document.createElement("button");
     contactBtn.className =
       "portfolio-btn btn-base btn-clipped btn-lg btn-primary contact-btn";
+    contactBtn.setAttribute("aria-label", "Contact Lars via email form");
     const contactIcon = document.createElement("img");
     contactIcon.src = "public/assets/icons/material-symbols_mail-rounded.svg";
-    contactIcon.alt = "Contact icon";
+    contactIcon.alt = "";
+    contactIcon.setAttribute("aria-hidden", "true");
     contactIcon.className = "btn-icon-md";
     contactBtn.appendChild(contactIcon);
     contactBtn.appendChild(document.createTextNode("Contact me"));
@@ -110,9 +123,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     const githubBtn = document.createElement("button");
     githubBtn.className =
       "portfolio-btn btn-base btn-clipped btn-lg btn-secondary github-btn";
+    githubBtn.setAttribute(
+      "aria-label",
+      "Visit Lars's GitHub profile (opens in new tab)"
+    );
     const githubIcon = document.createElement("img");
     githubIcon.src = "public/assets/icons/mdi_github.svg";
-    githubIcon.alt = "GitHub icon";
+    githubIcon.alt = "";
+    githubIcon.setAttribute("aria-hidden", "true");
     githubIcon.className = "btn-icon-md";
     githubBtn.appendChild(githubIcon);
     githubBtn.appendChild(document.createTextNode("GitHub"));
@@ -137,10 +155,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   function createPortfolioImage() {
     const imageContainer = document.createElement("div");
     imageContainer.className = "portfolio-image";
+    imageContainer.setAttribute("role", "img");
+    imageContainer.setAttribute(
+      "aria-label",
+      "Professional photo of Lars Torp Pettersen"
+    );
     const img = document.createElement("img");
     img.className = "portfolio-img-placeholder";
     img.src = "public/assets/images/DSC03075-2.webp";
-    img.alt = "Lars Torp Pettersen - Portfolio photo";
+    img.alt = "Lars Torp Pettersen - Professional portrait photo";
     imageContainer.appendChild(img);
     return imageContainer;
   }

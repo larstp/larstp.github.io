@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const logoLink = document.createElement("a");
   logoLink.href = "/";
   logoLink.className = "header-logo-link";
+  logoLink.setAttribute("aria-label", "Lars Torp Pettersen - Home");
+
   const logoImg = document.createElement("img");
   logoImg.src = "public/assets/icons/echo-logo-3.svg";
-  logoImg.alt =
-    "A mobile header logo I have used for everything for as long as I can remember";
+  logoImg.alt = "Lars Torp Pettersen logo";
   logoImg.className = "header-logo";
   logoLink.appendChild(logoImg);
   logoLink.addEventListener("click", function (e) {
@@ -24,10 +25,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const desktopLogoLink = document.createElement("a");
   desktopLogoLink.href = "/";
   desktopLogoLink.className = "header-logo-link";
+  desktopLogoLink.setAttribute("aria-label", "Lars Torp Pettersen - Home");
+
   const desktopLogoImg = document.createElement("img");
   desktopLogoImg.src = "public/assets/icons/echo-logo-3.svg";
-  desktopLogoImg.alt =
-    "A desktop header logo I have used for everything for as long as I can remember";
+  desktopLogoImg.alt = "Lars Torp Pettersen logo";
   desktopLogoImg.className = "header-logo";
   desktopLogoLink.appendChild(desktopLogoImg);
   desktopLogoLink.addEventListener("click", function (e) {
@@ -37,8 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const desktopNav = document.createElement("nav");
   desktopNav.className = "desktop-nav";
+  desktopNav.setAttribute("aria-label", "Main navigation");
+
   const desktopNavList = document.createElement("ul");
   desktopNavList.className = "desktop-nav-list";
+  desktopNavList.setAttribute("role", "menubar");
   [
     { text: "Projects", href: "#projects" },
     { text: "Skills", href: "#skills" },
@@ -99,6 +104,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.createElement("button");
   menuBtn.className = "header-menu-btn";
   menuBtn.setAttribute("aria-label", "Menu");
+  menuBtn.setAttribute("aria-expanded", "false");
+  menuBtn.setAttribute("aria-controls", "mobile-nav-menu");
 
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("class", "menu-svg");
@@ -109,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
   svg.setAttribute("stroke", "currentColor");
   svg.setAttribute("stroke-width", "3");
   svg.setAttribute("stroke-linecap", "round");
+  svg.setAttribute("aria-hidden", "true");
 
   const topLine = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -136,9 +144,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const dropdown = document.createElement("nav");
   dropdown.className = "header-dropdown";
+  dropdown.setAttribute("aria-label", "Mobile navigation menu");
+  dropdown.setAttribute("aria-hidden", "true");
+  dropdown.id = "mobile-nav-menu";
 
   const navList = document.createElement("ul");
   navList.className = "header-nav-list";
+  navList.setAttribute("role", "menu");
 
   const navItems = [
     {
@@ -246,10 +258,14 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdown.classList.add("open");
       menuBtn.classList.add("open");
       document.body.classList.add("header-menu-open");
+      menuBtn.setAttribute("aria-expanded", "true");
+      dropdown.setAttribute("aria-hidden", "false");
     } else {
       dropdown.classList.remove("open");
       menuBtn.classList.remove("open");
       document.body.classList.remove("header-menu-open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      dropdown.setAttribute("aria-hidden", "true");
     }
   });
 
@@ -260,66 +276,88 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.insertBefore(mobileHeader, document.body.firstChild);
 
   function initScrollNavigation() {
-    const sections = [
-      { id: "projects", selector: ".projects-section" },
-      { id: "skills", selector: ".skills-section" },
-      { id: "contact", selector: ".contact-section" },
-    ];
+    try {
+      const sections = [
+        { id: "projects", selector: ".projects-section" },
+        { id: "skills", selector: ".skills-section" },
+        { id: "contact", selector: ".contact-section" },
+      ];
 
-    const navLinks = {
-      projects: document.querySelectorAll('a[href="#projects"]'),
-      skills: document.querySelectorAll('a[href="#skills"]'),
-      contact: document.querySelectorAll('a[href="#contact"]'),
-    };
+      const navLinks = {
+        projects: document.querySelectorAll('a[href="#projects"]'),
+        skills: document.querySelectorAll('a[href="#skills"]'),
+        contact: document.querySelectorAll('a[href="#contact"]'),
+      };
 
-    let currentActiveSection = null;
+      let currentActiveSection = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        let newActiveSection = null;
-        let maxRatio = 0;
+      if (!window.IntersectionObserver) {
+        console.warn(
+          "IntersectionObserver not supported, navigation highlighting disabled"
+        );
+        return;
+      }
 
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-            maxRatio = entry.intersectionRatio;
-            newActiveSection = entry.target.dataset.navSection;
-          }
-        });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          let newActiveSection = null;
+          let maxRatio = 0;
 
-        if (newActiveSection !== currentActiveSection) {
-          Object.values(navLinks).forEach((links) => {
-            links.forEach((link) => link.classList.remove("nav-active"));
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+              maxRatio = entry.intersectionRatio;
+              newActiveSection = entry.target.dataset.navSection;
+            }
           });
 
-          if (newActiveSection && navLinks[newActiveSection]) {
-            navLinks[newActiveSection].forEach((link) =>
-              link.classList.add("nav-active")
-            );
+          if (newActiveSection !== currentActiveSection) {
+            Object.values(navLinks).forEach((links) => {
+              links.forEach((link) => {
+                if (link && link.classList) {
+                  link.classList.remove("nav-active");
+                }
+              });
+            });
+
+            if (newActiveSection && navLinks[newActiveSection]) {
+              navLinks[newActiveSection].forEach((link) => {
+                if (link && link.classList) {
+                  link.classList.add("nav-active");
+                }
+              });
+            }
+
+            currentActiveSection = newActiveSection;
           }
-
-          currentActiveSection = newActiveSection;
+        },
+        {
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+          rootMargin: "-64px 0px -40% 0px",
         }
-      },
-      {
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-        rootMargin: "-64px 0px -40% 0px",
+      );
+
+      function observeSections() {
+        try {
+          sections.forEach((section) => {
+            const element = document.querySelector(section.selector);
+            if (element) {
+              element.dataset.navSection = section.id;
+              observer.observe(element);
+            } else {
+              console.warn(`Section not found: ${section.selector}`);
+            }
+          });
+        } catch (error) {
+          console.error("Error observing sections:", error);
+        }
       }
-    );
 
-    function observeSections() {
-      sections.forEach((section) => {
-        const element = document.querySelector(section.selector);
-        if (element) {
-          element.dataset.navSection = section.id;
-          observer.observe(element);
-        }
-      });
+      observeSections();
+
+      setTimeout(observeSections, 1000);
+      setTimeout(observeSections, 2000);
+    } catch (error) {
+      console.error("Error initializing scroll navigation:", error);
     }
-
-    observeSections();
-
-    setTimeout(observeSections, 1000);
-
-    setTimeout(observeSections, 2000);
   }
 });

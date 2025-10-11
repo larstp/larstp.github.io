@@ -1,10 +1,12 @@
 export function createSkillsSection() {
   const skillsSection = document.createElement("section");
   skillsSection.className = "skills-section skills-fade";
+  skillsSection.setAttribute("aria-labelledby", "skills-heading");
 
   const heading = document.createElement("h3");
   heading.textContent = "Skills & Technologies";
   heading.className = "skills-heading";
+  heading.id = "skills-heading";
 
   const subheading = document.createElement("p");
   subheading.textContent =
@@ -13,6 +15,8 @@ export function createSkillsSection() {
 
   const skillsContainer = document.createElement("div");
   skillsContainer.className = "skills-container";
+  skillsContainer.setAttribute("role", "region");
+  skillsContainer.setAttribute("aria-label", "Skills and technologies grid");
 
   // Programming Languages
   const languagesSection = createSkillCategory(
@@ -89,11 +93,14 @@ function createSkillCategory(title, categoryId, skills, hidden = false) {
   skills.forEach((skill) => {
     const skillItem = document.createElement("div");
     skillItem.className = "skill-item";
-    skillItem.title = skill.name;
+    skillItem.setAttribute("role", "img");
+    skillItem.setAttribute("aria-label", `${skill.name} technology`);
+    skillItem.setAttribute("tabindex", "0");
 
     const skillIcon = document.createElement("img");
     skillIcon.src = `public/assets/images/skills/${skill.icon}`;
-    skillIcon.alt = `${skill.name} logo`;
+    skillIcon.alt = "";
+    skillIcon.setAttribute("aria-hidden", "true");
     skillIcon.className = "skill-icon";
 
     skillItem.appendChild(skillIcon);

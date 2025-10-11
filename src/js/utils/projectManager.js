@@ -115,11 +115,13 @@ export async function createProjectsSection(options = {}) {
 
   const section = document.createElement("section");
   section.className = "projects-section projects-fade";
+  section.setAttribute("aria-labelledby", "projects-heading");
 
   const textContainer = document.createElement("div");
   textContainer.className = "projects-text";
 
   const heading = document.createElement("h3");
+  heading.id = "projects-heading";
   heading.textContent = "Featured Projects";
 
   const desc = document.createElement("p");
@@ -131,6 +133,8 @@ export async function createProjectsSection(options = {}) {
 
   const cardsContainer = document.createElement("div");
   cardsContainer.className = "projects-cards";
+  cardsContainer.setAttribute("role", "list");
+  cardsContainer.setAttribute("aria-label", "Featured project cards");
 
   projects.forEach((project) => {
     const card = createProjectCard(project, technologiesData);

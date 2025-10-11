@@ -36,6 +36,7 @@ function createContactForm() {
   form.className = "contact-form";
   form.action = "https://api.web3forms.com/submit";
   form.method = "POST";
+  form.setAttribute("aria-label", "Contact form");
 
   const accessKeyInput = document.createElement("input");
   accessKeyInput.type = "hidden";
@@ -48,6 +49,8 @@ function createContactForm() {
   nameInput.placeholder = "Name";
   nameInput.required = true;
   nameInput.className = "contact-input";
+  nameInput.setAttribute("aria-label", "Your name");
+  nameInput.setAttribute("aria-required", "true");
 
   const emailInput = document.createElement("input");
   emailInput.type = "email";
@@ -55,6 +58,8 @@ function createContactForm() {
   emailInput.placeholder = "Email";
   emailInput.required = true;
   emailInput.className = "contact-input";
+  emailInput.setAttribute("aria-label", "Your email address");
+  emailInput.setAttribute("aria-required", "true");
 
   const messageInput = document.createElement("textarea");
   messageInput.name = "message";
@@ -62,15 +67,19 @@ function createContactForm() {
   messageInput.required = true;
   messageInput.rows = 6;
   messageInput.className = "contact-textarea";
+  messageInput.setAttribute("aria-label", "Your message");
+  messageInput.setAttribute("aria-required", "true");
 
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
   submitButton.className =
     "contact-submit-btn btn-base btn-clipped btn-lg btn-primary";
+  submitButton.setAttribute("aria-label", "Send message");
 
   const sendIcon = document.createElement("img");
   sendIcon.src = "public/assets/icons/fa6-solid_shuttle-space.svg";
-  sendIcon.alt = "Send icon";
+  sendIcon.alt = "";
+  sendIcon.setAttribute("aria-hidden", "true");
   sendIcon.className = "btn-icon-md";
 
   submitButton.appendChild(sendIcon);
@@ -114,10 +123,15 @@ function createContactLinks() {
     linkElement.href = downloadItem.href;
     linkElement.className = "contact-link contact-download-link";
     linkElement.download = downloadItem.download;
+    linkElement.setAttribute(
+      "aria-label",
+      `Download ${downloadItem.text.replace("Download ", "")}`
+    );
 
     const icon = document.createElement("img");
     icon.src = downloadItem.icon;
-    icon.alt = downloadItem.iconAlt;
+    icon.alt = "";
+    icon.setAttribute("aria-hidden", "true");
     icon.className = "contact-link-icon";
 
     const text = document.createElement("span");
@@ -163,11 +177,18 @@ function createContactLinks() {
     if (linkData.href.startsWith("http")) {
       linkElement.target = "_blank";
       linkElement.rel = "noopener noreferrer";
+      linkElement.setAttribute(
+        "aria-label",
+        `${linkData.text} (opens in new tab)`
+      );
+    } else {
+      linkElement.setAttribute("aria-label", linkData.text);
     }
 
     const icon = document.createElement("img");
     icon.src = linkData.icon;
-    icon.alt = linkData.iconAlt;
+    icon.alt = "";
+    icon.setAttribute("aria-hidden", "true");
     icon.className = "contact-link-icon";
 
     const text = document.createElement("span");

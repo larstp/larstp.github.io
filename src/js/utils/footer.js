@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
   edgeLink.target = "_blank";
   edgeLink.rel = "noopener noreferrer";
   edgeLink.className = "footer-link";
+  edgeLink.setAttribute(
+    "aria-label",
+    "Visit EDGEmedia website (opens in new tab)"
+  );
   edgeLink.textContent = "EDGEmedia";
 
   const copyrightMiddle = document.createTextNode(" - Lars Torp Pettersen.");
