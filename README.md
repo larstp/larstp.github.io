@@ -91,6 +91,11 @@ npm run validate-data
 - **CSS3** - Modern layouts with Flexbox/Grid, custom properties, clip-path
 - **JavaScript (ES6+)** - Modules, async/await, Intersection Observer API
 
+### Services:
+
+- **Web3Forms** - Contact form backend service for secure form submissions
+- **GitHub Pages** - Static site hosting and deployment
+
 ### Development Tools:
 
 - **JSON** - Data structure for projects and technologies
@@ -145,6 +150,7 @@ npm run validate-data
 - **Interactive Cards** - Hover effects and clipped borders because sci-fi is cool
 - **Interactive Skills Section** - Technology showcase with grayscale-to-color hover effects
 - **Mobile-Optimized Skills** - Full-color display on touch devices
+- **Contact Form** - Functional contact form powered by Web3Forms with custom notifications
 - **Performance Optimized** - Lazy loading and efficient animations
 
 ### Project Management:
@@ -241,6 +247,10 @@ Example GitHub Actions workflows provided for:
 - **Mouse Scroll Animation** - [Deepak K Vijayan](https://codepen.io/deepakkv/pen/WwmjKQ) (MIT License)
 - **Icons** - Custom SVG icons and [Iconify](https://iconify.design/) icon collections
 - **Images** - Personal project screenshots and professional photography
+
+### Services:
+
+- **Web3Forms** - [web3forms.com](https://web3forms.com) - Contact form backend service for secure, spam-free form submissions
 
 ### Development Tools:
 
