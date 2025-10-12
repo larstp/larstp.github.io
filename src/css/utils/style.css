@@ -211,7 +211,7 @@ button {
 }
 
 .btn-secondary:hover {
-  background: var(--accent);
+  background-color: var(--primary);
   transform: translateY(-2px);
 }
 

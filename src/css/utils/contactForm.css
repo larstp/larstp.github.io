@@ -190,7 +190,6 @@
   }
 }
 
-/* Notification Styles */
 .notification-overlay {
   position: fixed;
   top: 0;
@@ -316,7 +315,6 @@
   transform: translateY(0);
 }
 
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .notification {
     padding: 24px;

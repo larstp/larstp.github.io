@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     }, 2500);
   } catch (error) {
     console.error("Error loading projects section:", error);
-    // Create fallback projects section
     const fallbackProjects = document.createElement("section");
     fallbackProjects.className = "projects-section";
     fallbackProjects.innerHTML = "<p>Projects currently unavailable</p>";

@@ -30,7 +30,6 @@ export function filterProjects(projects, filters = {}) {
       return false;
     }
 
-    // Filter by status
     if (filters.status && project.status !== filters.status) {
       return false;
     }
@@ -62,7 +61,6 @@ export function sortProjects(
     let valueA = a[sortBy];
     let valueB = b[sortBy];
 
-    // Handle date sorting
     if (sortBy === "dateCreated") {
       valueA = new Date(valueA);
       valueB = new Date(valueB);

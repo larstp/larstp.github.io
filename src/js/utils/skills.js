@@ -18,20 +18,17 @@ export function createSkillsSection() {
   skillsContainer.setAttribute("role", "region");
   skillsContainer.setAttribute("aria-label", "Skills and technologies grid");
 
-  // Programming Languages
   const languagesSection = createSkillCategory(
     "Programming Languages",
     "languages",
     [{ name: "JavaScript", icon: "devicon_javascript.svg" }]
   );
 
-  // Frontend Technologies
   const frontendSection = createSkillCategory("Frontend", "frontend", [
     { name: "HTML5", icon: "logos_html-5.svg" },
     { name: "CSS3", icon: "logos_css-3.svg" },
   ]);
 
-  // Tools & Development
   const toolsSection = createSkillCategory("Tools & Development", "tools", [
     { name: "Git", icon: "devicon_git.svg" },
     { name: "VS Code", icon: "devicon_vscode.svg" },
@@ -39,7 +36,6 @@ export function createSkillsSection() {
     { name: "Docker", icon: "material-icon-theme_docker.svg" },
   ]);
 
-  // Creative Software
   const creativeSection = createSkillCategory("Creative Software", "creative", [
     { name: "Procreate", icon: "logo-procreate-icon.svg" },
     { name: "Photoshop", icon: "devicon_photoshop.svg" },
@@ -95,6 +91,7 @@ function createSkillCategory(title, categoryId, skills, hidden = false) {
     skillItem.className = "skill-item";
     skillItem.setAttribute("role", "img");
     skillItem.setAttribute("aria-label", `${skill.name} technology`);
+    skillItem.setAttribute("title", skill.name);
     skillItem.setAttribute("tabindex", "0");
 
     const skillIcon = document.createElement("img");
