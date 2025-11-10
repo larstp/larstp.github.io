@@ -109,13 +109,6 @@ function createContactLinks() {
       iconAlt: "CV icon",
       download: "Lars_Torp_Pettersen_CV.pdf",
     },
-    {
-      text: "Download Cover Letter",
-      href: "public/links/CoverLetter.pdf",
-      icon: "public/assets/icons/humbleicons_document.svg",
-      iconAlt: "Cover Letter icon",
-      download: "Lars_Torp_Pettersen_Cover_Letter.pdf",
-    },
   ];
 
   downloadData.forEach((downloadItem) => {

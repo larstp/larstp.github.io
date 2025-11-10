@@ -1,20 +1,37 @@
 {
   "projects": [
     {
-      "id": "rainy-days",
-      "title": "RainyDays",
-      "description": "My first HTML & CSS, and later JS, project; a e-commerce site for a fictional outdoor clothing brand specializing in outdoor gear.",
+      "id": "mimir",
+      "title": "Mimir",
+      "description": "Mimir is a simple social media platform I built for the JavaScript2 course. It's purpose was to teach me how to properly use an APIin regards to POST and PUT.",
       "image": {
-        "src": "public/assets/images/projects/RainyDays.webp",
-        "alt": "RainyDays logo"
+        "src": "public/assets/images/projects/mimir.webp",
+        "alt": "Mimir screenshot"
+      },
+      "technologies": ["html", "css", "javascript", "typescript", "vite"],
+      "links": {
+        "live": "https://larstp.github.io/Mimir/index.html",
+        "repository": "https://github.com/larstp/Mimir"
+      },
+      "featured": true,
+      "dateCreated": "2025-11-10",
+      "status": "active"
+    },
+    {
+      "id": "e-co",
+      "title": "E-Co",
+      "description": "My 1st Year Project Exam; Building a clean, modern e-commerce application using what we have learned in HTML, CSS and JavaScript so far.",
+      "image": {
+        "src": "public/assets/images/projects/E-Co.webp",
+        "alt": "Screenshot of E-Co website"
       },
       "technologies": ["html", "css", "javascript", "figma"],
       "links": {
-        "live": "https://larstp.github.io/RainyDays/",
-        "repository": "https://github.com/larstp/RainyDays"
+        "live": "https://larstp.github.io/E-Co/",
+        "repository": "https://github.com/larstp/E-Co"
       },
       "featured": true,
-      "dateCreated": "2024-12-01",
+      "dateCreated": "2025-05-20",
       "status": "active"
     },
     {
@@ -35,20 +52,20 @@
       "status": "active"
     },
     {
-      "id": "e-co",
-      "title": "E-Co",
-      "description": "My 1st Year Project Exam; Building a clean, modern e-commerce application using what we have learned in HTML, CSS and JavaScript so far.",
+      "id": "rainy-days",
+      "title": "RainyDays",
+      "description": "My first HTML & CSS, and later JS, project; a e-commerce site for a fictional outdoor clothing brand specializing in outdoor gear.",
       "image": {
-        "src": "public/assets/images/projects/E-Co.webp",
-        "alt": "Screenshot of E-Co website"
+        "src": "public/assets/images/projects/RainyDays.webp",
+        "alt": "RainyDays logo"
       },
       "technologies": ["html", "css", "javascript", "figma"],
       "links": {
-        "live": "https://larstp.github.io/E-Co/",
-        "repository": "https://github.com/larstp/E-Co"
+        "live": "https://larstp.github.io/RainyDays/",
+        "repository": "https://github.com/larstp/RainyDays"
       },
       "featured": true,
-      "dateCreated": "2025-05-20",
+      "dateCreated": "2024-12-01",
       "status": "active"
     }
   ],
