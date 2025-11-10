@@ -34,6 +34,7 @@ export function createSkillsSection() {
     { name: "VS Code", icon: "devicon_vscode.svg" },
     { name: "Figma", icon: "devicon_figma.svg" },
     { name: "Docker", icon: "material-icon-theme_docker.svg" },
+    { name: "Vite", icon: "skill-icons_vite-dark.svg" },
   ]);
 
   const creativeSection = createSkillCategory("Creative Software", "creative", [

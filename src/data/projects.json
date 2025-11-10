@@ -3,7 +3,7 @@
     {
       "id": "mimir",
       "title": "Mimir",
-      "description": "Mimir is a simple social media platform I built for the JavaScript2 course. It's purpose was to teach me how to properly use an APIin regards to POST and PUT.",
+      "description": "Mimir is a simple social media platform I built for the JavaScript2 course. It's purpose was to teach me how to properly post to an API like you would in a SoMe situation.",
       "image": {
         "src": "public/assets/images/projects/mimir.webp",
         "alt": "Mimir screenshot"
